@@ -43,7 +43,7 @@ a:visited {
 }
 
 .login-container .social {
-    width: 30%;
+    width: calc(3 * 1em + 8em);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -53,28 +53,28 @@ a:visited {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: space-between;
     flex-wrap: wrap;
     width: 70%;
-    min-height: 35%;
+    min-height: 40%;
 }
 
 .login-container form input {
-    width: calc(90% - 4px);
+    width: 100%;
     height: 3em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 3px 8px 6px #00000029;
+    box-shadow: 8px 10px 10px #00000029;
     border: 1px solid #707070;
-    border-radius: 10px;
-    text-indent: 2em;
+    border-radius: 15px;
+    font-family: 'FontAwesome', 'Segoe UI';
+    text-indent: 1em;
 }
 
 .login-container form button {
     background: #63B0EB 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
-    border-radius: 22px;
+    border-radius: 50px;
     width: 40%;
-    height: 2em;
+    height: 2.3em;
     color: white;
 }
 
@@ -82,7 +82,9 @@ a:visited {
     align-self: flex-start;
     text-align: right;
     width: 100%;
-    margin: 1em 0;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    color: #707070;
 }
 
 .login-container form i {
@@ -93,8 +95,8 @@ a:visited {
 }
 
 .social a{
-    border: 0.1em solid;
-    border-radius: 50px;
+    border: 2px solid;
+    border-radius: 100%;
     padding: 0.5em;
     width: 2em;
     height: 2em;
@@ -106,4 +108,48 @@ a:visited {
 .social a i {
     font-size: 2em;
     display: block;
+}
+
+@media only screen and (max-device-width: 800px) and (min-device-width: 371px) {
+    * {
+        font-size: 1.1em;
+    }
+
+    .graphic{
+        display: none;
+    }
+
+    .login-container{
+        width: 100%;
+    }
+
+    .login-container img {
+        width: 80%;
+    }
+
+    .login-container form button {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-device-width: 370px) {
+    * {
+        font-size: 1.2em;
+    }
+
+    .graphic{
+        display: none;
+    }
+
+    .login-container{
+        width: 100%;
+    }
+
+    .login-container img {
+        width: 80%;
+    }
+
+    .login-container form button {
+        width: 100%;
+    }
 }
