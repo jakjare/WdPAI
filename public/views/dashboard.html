@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+    <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
+    <title>AdminGate - dashboard</title>
+</head>
+<body>
+    <div class="base-container">
+        <header>
+            <a href="#"><img src="../img/icon_admingate.svg"></a>
+            <a href="#" class="push"><i class="far fa-bell"></i></a>
+            <a href="#"><i class="fas fa-cog"></i></a>
+            <a href="#"><i class="far fa-question-circle"></i></a>
+            <div class="user-header">
+                <p>username@email.com</p>
+                <p>organization name</p>
+            </div>
+            <div class="avatar"></div>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-house-user"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-clipboard-list"></i>
+                        <div>Administration</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users-cog"></i>
+                        <div>Users</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-server"></i>
+                        <div>Devices</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="far fa-envelope"></i>
+                        <div>Requests</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main class="dashboard">
+            <div id="status">
+                <div style="font-weight: bold;">Your dashboard</div>
+                <div class="special">server time</div>
+                <div>24.11.2020 / 21:58</div>
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+            <div id="online-users" class="info-block">
+                <i class="fas fa-user"></i>
+                <div>
+                    <p>Users online</p>
+                    <p>23</p>
+                </div>
+            </div>
+            <div id="online-devices" class="info-block">
+                <i class="fas fa-server"></i>
+                <div>
+                    <p>Devices online</p>
+                    <p>64</p>
+                </div>
+            </div>
+            <div id="today-problems" class="info-block">
+                <i class="far fa-clock"></i>
+                <div>
+                    <p>Today's problems</p>
+                    <p>2</p>
+                </div>
+            </div>
+            <div id="problems"></div>
+            <div id="users"></div>
+            <div id="room-status"></div>
+        </main>
+    </div>
+</body>

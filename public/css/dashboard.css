@@ -1,0 +1,78 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 80px 80px auto 150px;
+    row-gap: 20px;
+    column-gap: 15px;
+}
+
+.dashboard > div {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000024;
+    border-radius: 7px;
+    padding: 15px;
+}
+
+#status {
+    grid-column: 1 / 5;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#status > i {
+    font-size: 1.5em;
+    color: #CACED1;
+}
+
+.special {
+    background: #D8F5FA 0% 0% no-repeat padding-box;
+    border-radius: 0.5em;
+    font-family: Consolas;
+    padding: 5px 20px;
+    color: #3BCEE6;
+}
+
+#online-users {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.info-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.info-block > i {
+    font-size: 1.5em;
+    color: #5D6D86;
+    background-color: #ECEEF1;
+    border-radius: 2em;
+    padding: 15px;
+}
+
+.info-block p {
+    font-size: 0.9em;
+}
+
+.info-block p:last-child {
+    font-weight: bold;
+}
+
+#problems {
+    grid-column: 1 / 4;
+    grid-row: 3;
+}
+
+#users {
+    grid-row: 2 / 4;
+}
+
+#room-status {
+    grid-row: 4;
+    grid-column: 1 / 3;
+}
