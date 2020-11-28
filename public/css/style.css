@@ -204,7 +204,6 @@ header a > i {
     height: 5vh;
     background: transparent url('../img/user-circle-solid.svg') no-repeat center;
     margin: 0 10px;
-    border: 1px solid #a0a0a0;
     border-radius: 100%;
 }
 
