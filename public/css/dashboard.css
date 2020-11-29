@@ -61,6 +61,7 @@
 
 .info-block p {
     font-size: 0.9em;
+    font-family: Consolas;
 }
 
 .info-block p:last-child {
