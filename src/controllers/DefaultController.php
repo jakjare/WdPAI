@@ -5,13 +5,18 @@ require_once 'AppController.php';
 class DefaultController extends AppController {
 
     public function index() {
-        // TODO display login.html
+        // TODO display login.php
         $this->render('login');
     }
 
     public function dashboard() {
-        // TODO display dashboard.html
+        // TODO display dashboard.php
         $this->render('dashboard');
+    }
+
+    public function devices() {
+        // TODO display devices.php
+        $this->render('devices');
     }
 
 }

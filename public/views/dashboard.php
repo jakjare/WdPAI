@@ -8,7 +8,7 @@
 <body>
     <div class="base-container">
         <header>
-            <a href="#"><img src="public/img/icon_admingate.svg"></a>
+            <a href="dashboard"><img src="public/img/icon_admingate.svg"></a>
             <a href="#" class="push"><i class="far fa-bell"></i></a>
             <a href="#"><i class="fas fa-cog"></i></a>
             <a href="#"><i class="far fa-question-circle"></i></a>
@@ -21,7 +21,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="dashboard">
                         <i class="fas fa-house-user"></i>
                         <div>Dashboard</div>
                     </a>

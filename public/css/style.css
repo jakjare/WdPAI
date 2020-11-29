@@ -70,6 +70,18 @@ a:visited {
     text-indent: 1em;
 }
 
+.messeges {
+    color: red;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid red;
+    box-shadow: 8px 10px 10px #00000029;
+    padding: 0.5em 0.5em;
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0;
+}
+
 .login-container form button {
     background: #63B0EB 0 0 no-repeat padding-box;
     border: 1px solid #707070;
