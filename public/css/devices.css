@@ -1,0 +1,107 @@
+.devices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 10px 20px 20px 20px;
+}
+
+.devices > div {
+    width: calc(100% - 30px);
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    box-shadow: 0 3px 6px #00000024;
+    border-radius: 7px;
+    margin: 7.5px 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.devices * {
+    font-size: 0.9em;
+}
+
+#filter > form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#filter input {
+    min-width: 200px;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 7px;
+    margin: 1em 0;
+}
+
+#filter button {
+    background: #4E8AB8 0 0 no-repeat padding-box;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    margin: 0.5em 10px;
+    padding: 0.5em 50px;
+}
+
+.break {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#filter i {
+    font-size: 1.2em;
+    color: #5D6D86;
+}
+
+#devices-list {
+    overflow: scroll;
+}
+
+.devices-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.devices-table i {
+    font-size: 1.5em;
+    margin: 2px 2px;
+}
+
+.devices-table th {
+    text-align: left;
+    border-bottom: 2px solid #CACED1;
+    padding: 0 1em;
+}
+
+.devices-table td {
+    padding: 0 1em;
+}
+
+.devices-table td:last-child {
+    text-align: right;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    #filter > form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #filter form  > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #filter form input {
+        width: 100%;
+        padding: 0.5em 0;
+    }
+}

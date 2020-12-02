@@ -16,6 +16,10 @@ a:visited {
     color: black;
 }
 
+a:link {
+    color: black;
+}
+
 .base-container {
     width: 100vw;
     height: 100vh;
@@ -169,7 +173,6 @@ a:visited {
 
 header {
     width: 100vw;
-    height: 6vh;
     background: transparent linear-gradient(180deg, #86C4F4 0%, #64B0EB 100%) 0 0 no-repeat padding-box;
     display: flex;
     flex-direction: row;
@@ -178,12 +181,12 @@ header {
 }
 
 header a > img{
-    height: 5vh;
+    height: 1.8em;
     margin-left: 10px;
 }
 
 header a > i {
-    font-size: 4vh;
+    font-size: 1.5em;
     margin: 0 10px;
     color: white;
 }
@@ -193,34 +196,33 @@ header a > i {
 }
 
 .user-header {
-    height: 5vh;
+    height: 1.5em;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 0.1em;
 }
 
 .user-header p {
-    padding: 0;
-    margin: 0;
-    font-size: 2vh;
+    font-size: 0.8em;
     text-align: right;
 }
 
 .user-header > p:last-child {
-    font-size: 1.6vh;
+    font-size: 0.5em;
     text-transform: uppercase;
 }
 
 .avatar {
-    width: 5vh;
-    height: 5vh;
+    width: 1.9em;
+    height: 1.9em;
     background: transparent url('../img/user-circle-solid.svg') no-repeat center;
     margin: 0 10px;
     border-radius: 100%;
 }
 
 nav {
-    min-height: 94vh;
+    min-height: calc(100% - 2em);
     width: 20%;
     background-color: white;
     box-shadow: 0 0 5px #5E5E5E;

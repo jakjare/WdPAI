@@ -8,49 +8,14 @@
 <body>
     <div class="base-container">
         <header>
-            <a href="dashboard"><img src="public/img/icon_admingate.svg"></a>
-            <a href="#" class="push"><i class="far fa-bell"></i></a>
-            <a href="#"><i class="fas fa-cog"></i></a>
-            <a href="#"><i class="far fa-question-circle"></i></a>
-            <div class="user-header">
-                <p>username@email.com</p>
-                <p>organization name</p>
-            </div>
-            <div class="avatar"></div>
+            <?php
+                $this->header();
+            ?>
         </header>
         <nav>
-            <ul>
-                <li>
-                    <a href="dashboard">
-                        <i class="fas fa-house-user"></i>
-                        <div>Dashboard</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <div>Administration</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-users-cog"></i>
-                        <div>Users</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-server"></i>
-                        <div>Devices</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="far fa-envelope"></i>
-                        <div>Requests</div>
-                    </a>
-                </li>
-            </ul>
+            <?php
+                $this->menu();
+            ?>
         </nav>
         <main class="dashboard">
             <div id="status">
@@ -107,7 +72,7 @@
             <div id="users">
                 <div>
                     <div>Users</div>
-                    <a href="#">View all</a>
+                    <a href="users">View all</a>
                 </div>
                 <table>
                     <tr>
