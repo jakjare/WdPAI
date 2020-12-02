@@ -48,7 +48,7 @@
                     <th>Services</th>
                     <th>Status</th>
                     <th>Online</th>
-                    <th style="width: 10%; text-align: right;"></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>DEVICE_1</td>

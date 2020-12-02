@@ -3,7 +3,7 @@ body {
 }
 
 * {
-    font: 20px/27px Segoe UI;
+    font: 20px Segoe UI;
     padding: 0;
     margin: 0;
 }
@@ -173,16 +173,22 @@ a:link {
 
 header {
     width: 100vw;
+    height: 2em;
     background: transparent linear-gradient(180deg, #86C4F4 0%, #64B0EB 100%) 0 0 no-repeat padding-box;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     color: white;
 }
 
 header a > img{
     height: 1.8em;
+}
+
+header > a:first-child {
     margin-left: 10px;
+    height: 1.8em;
 }
 
 header a > i {

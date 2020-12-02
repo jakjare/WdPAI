@@ -37,6 +37,8 @@
     border: 1px solid #707070;
     border-radius: 7px;
     margin: 1em 0;
+    padding: 0.5em 0;
+    text-indent: 1em;
 }
 
 #filter button {
@@ -61,6 +63,11 @@
 
 #devices-list {
     overflow: scroll;
+    scrollbar-width: none;
+}
+
+#devices-list::-webkit-scrollbar {
+    display: none;
 }
 
 .devices-table {
@@ -71,6 +78,7 @@
 .devices-table i {
     font-size: 1.5em;
     margin: 2px 2px;
+    color: #5D6D86;
 }
 
 .devices-table th {

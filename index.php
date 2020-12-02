@@ -9,6 +9,8 @@ Routing::get('', 'DefaultController');
 Routing::get('index', 'DefaultController');
 Routing::get('dashboard', 'DefaultController');
 Routing::get('devices', 'DefaultController');
+Routing::get('users', 'DefaultController');
+Routing::get('error', 'DefaultController');
 Routing::post('login', 'SecurityController');
 
 Routing::run($path);

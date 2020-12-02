@@ -1,0 +1,26 @@
+.error-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-container > img {
+    width: 40%;
+}
+
+.error-container > div {
+    margin-top: 2em;
+    width: calc(40% - 2 * 2em);
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    box-shadow: 8px 10px 10px #00000029;
+    border: 1px solid #707070;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
