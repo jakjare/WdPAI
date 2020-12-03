@@ -22,9 +22,27 @@
     justify-content: space-between;
 }
 
-#status > i {
+#status i {
     font-size: 1.5em;
     color: #CACED1;
+}
+
+.dashboard button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: block;
+}
+
+.settings-box {
+    display: none;
+    font-size: 0.7em;
+    position: absolute;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    box-shadow: 0 3px 6px #00000024;
+    border: #707070 1px solid;
+    border-radius: 7px;
+    padding: 15px;
 }
 
 .special {
@@ -60,7 +78,7 @@
 }
 
 .info-block p {
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-family: Consolas;
 }
 
@@ -81,7 +99,7 @@
     padding: 10px 10px;
 }
 
-#problems > div > i {
+#problems > div i {
     font-size: 1.5em;
     color: #CACED1;
 }

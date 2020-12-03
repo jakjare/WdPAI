@@ -24,3 +24,7 @@
     justify-content: center;
     padding: 2em;
 }
+
+.error-container p {
+    text-align: center;
+}

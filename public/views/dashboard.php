@@ -4,12 +4,23 @@
     <link rel="stylesheet" type="text/css" href="public/css/dashboard.css">
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
     <title>AdminGate - dashboard</title>
+    <script>
+        function settingsProblem() {
+            if (document.getElementById("problem-settings-box").style.display == "none")
+            {
+                document.getElementById("problem-settings-box").style.display = "block";
+
+            } else {
+                document.getElementById("problem-settings-box").style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="base-container">
         <header>
             <?php
-                $this->header();
+                include_once("public/shared/header.php");
             ?>
         </header>
         <nav>
@@ -22,7 +33,7 @@
                 <div style="font-weight: bold;">Your dashboard</div>
                 <div class="special">server time</div>
                 <div>24.11.2020 / 21:58</div>
-                <i class="fas fa-ellipsis-v"></i>
+
             </div>
             <div id="online-users" class="info-block">
                 <i class="fas fa-user"></i>
@@ -48,7 +59,8 @@
             <div id="problems">
                 <div>
                     <div>Problems</div>
-                    <i class="fas fa-ellipsis-v"></i>
+                    <button id="problem-settings" onclick="settingsProblem()"><i class="fas fa-ellipsis-v"></i></button>
+                    <div id="problem-settings-box" class="settings-box" style="display: none;">asdads</div>
                 </div>
                 <table id="table-problems">
                     <tr>

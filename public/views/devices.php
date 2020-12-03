@@ -9,7 +9,7 @@
 <div class="base-container">
     <header>
         <?php
-        $this->header();
+            include_once("public/shared/header.php");
         ?>
     </header>
     <nav>
