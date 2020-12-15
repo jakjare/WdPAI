@@ -1,0 +1,5 @@
+.vscode
+.idea
+public/uploads/
+config.php
+docker-compose.yml

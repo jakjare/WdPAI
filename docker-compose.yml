@@ -11,6 +11,7 @@ services:
       - .:/app/
     links:
       - php
+      - db
 
   php:
     build:
@@ -18,3 +19,12 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DATABASE=admingate
+      - POSTGRES_USER=admingate_user
+      - POSTGRES_PASSWORD=Admin1
+    ports:
+      - 5432:5432
