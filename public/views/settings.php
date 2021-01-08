@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/settings.css">
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./public/js/settings.js" defer></script>
     <title>AdminGate - settings</title>
 </head>
 <body>
