@@ -8,11 +8,7 @@
 
 .devices > div {
     width: calc(100% - 30px);
-    background: #FFFFFF 0 0 no-repeat padding-box;
-    box-shadow: 0 3px 6px #00000024;
-    border-radius: 7px;
     margin: 7.5px 10px;
-    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;

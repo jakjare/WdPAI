@@ -5,13 +5,14 @@
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
     <title>AdminGate - dashboard</title>
     <script>
-        function settingsProblem() {
-            if (document.getElementById("problem-settings-box").style.display == "none")
+        function settingsProblem(block_id) {
+            block_id = block_id + '-box';
+            if (document.getElementById(block_id).style.display == "none")
             {
-                document.getElementById("problem-settings-box").style.display = "block";
+                document.getElementById(block_id).style.display = "block";
 
             } else {
-                document.getElementById("problem-settings-box").style.display = "none";
+                document.getElementById(block_id).style.display = "none";
             }
         }
     </script>
@@ -25,7 +26,7 @@
         </header>
         <nav>
             <?php
-                $this->menu();
+            include_once("public/shared/menu.php");
             ?>
         </nav>
         <main class="dashboard">
@@ -59,8 +60,7 @@
             <div id="problems">
                 <div>
                     <div>Problems</div>
-                    <button id="problem-settings" onclick="settingsProblem()"><i class="fas fa-ellipsis-v"></i></button>
-                    <div id="problem-settings-box" class="settings-box" style="display: none;">asdads</div>
+                    <button id="problem-settings" onclick="settingsProblem('problem-settings')"><i class="fas fa-ellipsis-v"></i><div id="problem-settings-box" class="settings-box" style="display: none;"><a href="login">exit</a></div></button>
                 </div>
                 <table id="table-problems">
                     <tr>
@@ -90,14 +90,14 @@
                     <tr>
                         <td><div class="avatar"></div></td>
                         <td style="width: 80%">Olivia East</td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
+                        <td><button id="user-1-settings" onclick="settingsProblem('user-1-settings')"><i class="fas fa-ellipsis-v"></i><div id="user-1-settings-box" class="settings-box" style="display: none;">callasdasasdasdasadadadadada dadadadadada dadadadadadadadadadada dadadadadaddsadssad</div></button></td>
                     </tr>
                 </table>
             </div>
             <div id="room-status">
                 <div>
                     <div>Room status</div>
-                    <i class="fas fa-ellipsis-v"></i>
+                    <button id="room-settings" onclick="settingsProblem('room-settings')"><i class="fas fa-ellipsis-v"></i><div id="room-settings-box" class="settings-box" style="display: none;">callasdasasdasdadsadssad</div></button>
                 </div>
                 <table>
                     <tr>

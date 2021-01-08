@@ -12,6 +12,15 @@ a {
     text-decoration: none;
 }
 
+h1 {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
 a:visited {
     color: black;
 }
@@ -180,6 +189,7 @@ header {
     align-items: center;
     justify-content: center;
     color: white;
+    z-index: 100;
 }
 
 header a > img{
@@ -222,7 +232,6 @@ header a > i {
 .avatar {
     width: 1.9em;
     height: 1.9em;
-    background: transparent url('../img/user-circle-solid.svg') no-repeat center;
     margin: 0 10px;
     border-radius: 100%;
 }
@@ -265,6 +274,13 @@ main {
     width: calc(80% - 40px);
     min-height: calc(92vh - 3em);
     padding: 20px;
+}
+
+main > div {
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    box-shadow: 0 3px 6px #00000024;
+    border-radius: 7px;
+    padding: 15px;
 }
 
 

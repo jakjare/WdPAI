@@ -11,6 +11,10 @@ Routing::get('dashboard', 'DefaultController');
 Routing::get('devices', 'DefaultController');
 Routing::get('users', 'DefaultController');
 Routing::get('error', 'DefaultController');
+Routing::post('settings', 'UserController');
 Routing::post('login', 'SecurityController');
+Routing::post('logout', 'SecurityController');
+Routing::post('addAvatar', 'UserController');
+Routing::post('changePassword', 'SecurityController');
 
 Routing::run($path);

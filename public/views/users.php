@@ -14,7 +14,7 @@
     </header>
     <nav>
         <?php
-        $this->menu();
+        include_once("public/shared/menu.php");
         ?>
     </nav>
     <main class="devices">
