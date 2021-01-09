@@ -28,6 +28,7 @@ class SecurityController extends AppController
         }
 
         if ($user->getPassword() !== $password) {
+            $userRepository->userLogin($user->getIdDatabase(), false);
             return $this->render('login', ['messages' => ["Wrong password!"]]);
         }
 
@@ -36,6 +37,8 @@ class SecurityController extends AppController
         $_SESSION['name'] = $user->getName();
         $_SESSION['surname'] = $user->getSurname();
         $_SESSION['image'] = $user->getImage();
+
+        $userRepository->userLogin($user->getIdDatabase(), true);
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");

@@ -11,6 +11,13 @@ class UserController extends AppController
     const UPLOAD_DIRECTORY = '/../public/uploads/users_avatars/';
 
     private $messages = [];
+    private $userReppository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
 
     public function addAvatar() {
 
@@ -22,8 +29,7 @@ class UserController extends AppController
             );
 
             session_start();
-            $userRepository = new UserRepository();
-            $userRepository->setImage($_SESSION['email'], $_FILES['avatar']['name']);
+            $this->userRepository->setImage($_SESSION['email'], $_FILES['avatar']['name']);
             $_SESSION['image'] = $_FILES['avatar']['name'];
 
             return $this->render('settings');
@@ -48,8 +54,7 @@ class UserController extends AppController
 
     public function settings() {
         session_start();
-        $userRepository = new UserRepository();
-        $user = $userRepository->getUser($_SESSION['email']);
+        $user = $this->userRepository->getUser($_SESSION['email']);
 
         if (isset($_POST['name']))
         {
@@ -67,7 +72,7 @@ class UserController extends AppController
             $user->setPhone($tmp);
 
             $tmp = $_POST['email'] == "" ? $user->getEmail() : $_POST['email'];
-            if ($userRepository->userExists($tmp) && $tmp != $user->getEmail())
+            if ($this->userRepository->userExists($tmp) && $tmp != $user->getEmail())
             {
                 return $this->render('settings', ['messages' => ['Email already in use!']]);
             } else
@@ -76,9 +81,15 @@ class UserController extends AppController
                 $_SESSION['email'] = $tmp;
             }
 
-            $userRepository->changePersonalDetails($user);
+            $this->userRepository->changePersonalDetails($user);
         }
 
         $this->render('settings', ['name' => $user->getName(), 'surname' => $user->getSurname(), 'email' => $user->getEmail(), 'phone' => $user->getPhone(), 'password' => $user->getPassword()]);
+    }
+
+    public function users()
+    {
+        $users = $this->userRepository->getUsers();
+        $this->render('users', ['users' => $users]);
     }
 }

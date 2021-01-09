@@ -2,12 +2,20 @@
 
 class User
 {
+    private $id_database;
     private $email;
     private $password;
+    private $enabled;
+    private $salt;
+    private $created_at;
     private $name;
     private $surname;
+    private $phone;
+    private $image;
+    private $role;
+    private $last_login;
 
-    public function __construct(int $id_database, string $email, string $password, bool $enabled, int $salt, string $created_at, string $name, string $surname, string $phone, string $image, int $role)
+    public function __construct(int $id_database, string $email, string $password, bool $enabled, string $salt, string $created_at, string $name, string $surname, string $phone, string $image, string $role, string $last_login)
     {
         $this->id_database = $id_database;
         $this->email = $email;
@@ -20,6 +28,7 @@ class User
         $this->phone = $phone;
         $this->image = $image;
         $this->role = $role;
+        $this->last_login = $last_login;
     }
 
     public function getIdDatabase(): int
@@ -67,7 +76,7 @@ class User
         $this->phone = $phone;
     }
 
-    public function getRole(): int
+    public function getRole(): string
     {
         return $this->role;
     }
@@ -85,6 +94,11 @@ class User
     public function setEmail(string $email)
     {
         $this->email = $email;
+    }
+
+    public function getLastLogin(): string
+    {
+        return $this->last_login;
     }
 
     public function getPassword(): string

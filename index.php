@@ -9,7 +9,7 @@ Routing::get('', 'DefaultController');
 Routing::get('index', 'DefaultController');
 Routing::get('dashboard', 'DefaultController');
 Routing::get('devices', 'DefaultController');
-Routing::get('users', 'DefaultController');
+Routing::get('users', 'UserController');
 Routing::get('error', 'DefaultController');
 Routing::post('settings', 'UserController');
 Routing::post('login', 'SecurityController');

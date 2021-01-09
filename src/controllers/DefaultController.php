@@ -19,11 +19,6 @@ class DefaultController extends AppController {
         $this->render('devices');
     }
 
-    public function users() {
-        // TODO display users.php
-        $this->render('users');
-    }
-
     public function error() {
         // TODO display error.php
         $this->render('error');

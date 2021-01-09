@@ -8,7 +8,7 @@ class UserRepository extends Repository
     public function getUser(string $email): ?User
     {
         $stmt =$this->database->connect()->prepare('
-            SELECT * FROM public.users WHERE email = :email
+            SELECT * FROM user_full WHERE email = :email
         ');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -20,13 +20,6 @@ class UserRepository extends Repository
             //TODO zamiast zwracać nulla należy zwracać exception
         }
 
-        $stmt =$this->database->connect()->prepare('
-            SELECT * FROM public.user_details WHERE id = :id_user_details
-        ');
-        $stmt->bindParam(':id_user_details', $user['id_user_details'], PDO::PARAM_STR);
-        $stmt->execute();
-        $user_details = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return new User(
             $user['id'],
             $user['email'],
@@ -34,12 +27,25 @@ class UserRepository extends Repository
             $user['enabled'],
             $user['salt'],
             $user['created_at'],
-            $user_details['name'],
-            $user_details['surname'],
-            $user_details['phone'],
-            $user_details['image'],
-            $user_details['role']
+            $user['name'],
+            $user['surname'],
+            $user['phone'],
+            $user['image'],
+            $user['description'],
+            $user['date']
         );
+    }
+
+    public function userLogin(string $id, bool $succesful): void
+    {
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO login_history VALUES (DEFAULT, :userID, DEFAULT, :userIP, :succesful);
+        ');
+        $stmt->bindParam(':userID', $id);
+        $user_IP = $_SERVER['REMOTE_ADDR'];
+        $stmt->bindParam(':userIP', $user_IP);
+        $stmt->bindParam(':succesful', $succesful, PDO::PARAM_BOOL);
+        $stmt->execute();
     }
 
     public function setImage(string $email, string $newImageName)
@@ -104,6 +110,37 @@ class UserRepository extends Repository
         $stmt->bindParam(':newPassword', $password);
         $stmt->bindParam(':userID', $user_id);
         $stmt->execute();
+    }
+
+    public function getUsers(): array
+    {
+        $result = [];
+        $stmt =$this->database->connect()->prepare('
+            SELECT * FROM user_full;
+        ');
+        $stmt->execute();
+
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user)
+        {
+            $result[] = new User(
+                $user['id'],
+                $user['email'],
+                $user['password'],
+                $user['enabled'],
+                $user['salt'],
+                $user['created_at'],
+                $user['name'],
+                $user['surname'],
+                $user['phone'],
+                $user['image'],
+                $user['description'],
+                $user['date']
+            );
+        }
+
+        return $result;
     }
 
 }
