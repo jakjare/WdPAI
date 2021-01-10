@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/devices.css">
+    <link rel="stylesheet" type="text/css" href="public/css/objects.css">
+    <link rel="stylesheet" type="text/css" href="public/css/settings.css">
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./public/js/dataValidation.js" defer></script>
+    <script type="text/javascript" src="./public/js/userEditor.js" defer></script>
     <title>AdminGate - users</title>
 </head>
 <body>
@@ -17,26 +20,14 @@
         include_once("public/shared/menu.php");
         ?>
     </nav>
-    <main class="devices">
-        <div id="filter">
-            <i class="fas fa-filter"></i>
-            <form>
-                <div>
-                    Email
-                    <input name="email" type="text">
-                </div>
-                <div>
-                    Permission
-                    <input name="permission" type="text">
-                </div>
-                <div class="break">
-                    <button type="submit">Apply</button>
-                    <button type="reset">Clear</button>
-                </div>
-            </form>
+    <main class="objects">
+        <div class="option-bar">
+            <input name="search">
+            <button type="search"><i class="fas fa-search"></i></button>
+            <button id="userAddButton">Add user</button>
         </div>
-        <div id="devices-list">
-            <table class="devices-table">
+        <div id="object-list">
+            <table class="objects-table">
                 <tr>
                     <th>Name</th>
                     <th>Surname</th>
@@ -60,5 +51,48 @@
             </table>
         </div>
     </main>
+    <div class="overlay">
+        <div class="popup">
+            <h1>User editor</h1>
+            <form class="account-settings-form" action="addUser" method="post">
+                <div>
+                    <div>
+                        Email address
+                        <input name="email" type="text">
+                    </div>
+                    <div>
+                        Password
+                        <input name="new-password" type="password">
+                    </div>
+                    <div>
+                        Confirm password
+                        <input name="confirm-password" type="password">
+                    </div>
+                    <div>
+                        Name
+                        <input name="name" type="text">
+                    </div>
+                    <div>
+                        Surname
+                        <input name="surname" type="text">
+                    </div>
+                    <div>
+                        Phone
+                        <input name="phone" type="text">
+                    </div>
+                    <div>
+                        Role
+                        <select name="role">
+                            <option value="1">Admin</option>
+                            <option value="2">User</option>
+                            <?php //TODO ?>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">confirm</button>
+            </form>
+            <button id="exitPopupButton">exit</button>
+        </div>
+    </div>
 </div>
 </body>

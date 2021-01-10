@@ -1,9 +1,9 @@
-const form = document.querySelectorAll("form");
-const phoneInput = form[1].querySelector('input[name="phone"]');
-const emailInput = form[1].querySelector('input[name="email"]');
-const emailButton = form[1].querySelector('button');
-const newPasswordInput = form[2].querySelector('input[name="new-password"]');
-const confirmedPasswordInput = form[2].querySelector('input[name="confirm-password"]');
+const phoneInput = document.querySelector('input[name="phone"]');
+const emailInput = document.querySelector('input[name="email"]');
+const emailButton = emailInput.parentElement.parentElement.parentElement.querySelector('button');
+const newPasswordInput = document.querySelector('input[name="new-password"]');
+const confirmedPasswordInput = document.querySelector('input[name="confirm-password"]');
+const passwordButton = newPasswordInput.parentElement.parentElement.parentElement.querySelector('button');
 
 function isEmail(email)
 {
@@ -49,6 +49,7 @@ confirmedPasswordInput.addEventListener('keyup', function () {
             newPasswordInput.value,
             confirmedPasswordInput.value
         );
+        condition ? passwordButton.disabled = false : passwordButton.disabled = true;
         markValidation(confirmedPasswordInput, condition);
         },
         1000

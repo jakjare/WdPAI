@@ -15,6 +15,7 @@ Routing::post('settings', 'UserController');
 Routing::post('login', 'SecurityController');
 Routing::post('logout', 'SecurityController');
 Routing::post('addAvatar', 'UserController');
+Routing::post('addUser', 'UserController');
 Routing::post('changePassword', 'SecurityController');
 
 Routing::run($path);

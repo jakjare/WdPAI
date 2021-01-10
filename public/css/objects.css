@@ -1,4 +1,4 @@
-.devices {
+.objects {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,44 +6,45 @@
     padding: 10px 20px 20px 20px;
 }
 
-.devices > div {
+.objects > div {
     width: calc(100% - 30px);
     margin: 7.5px 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.devices * {
+.objects * {
     font-size: 0.9em;
 }
 
-#filter > form {
+.option-bar {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
-#filter input {
+.option-bar input {
+    padding: 0.5em 0;
+    margin: 0 5px;
+}
+
+input {
     min-width: 200px;
     background: #FFFFFF 0 0 no-repeat padding-box;
     border: 1px solid #707070;
     border-radius: 7px;
-    margin: 1em 0;
-    padding: 0.5em 0;
     text-indent: 1em;
 }
 
-#filter button {
+button {
     background: #4E8AB8 0 0 no-repeat padding-box;
     border-radius: 5px;
     color: white;
     border: none;
-    margin: 0.5em 10px;
     padding: 0.5em 50px;
+    margin: 0 5px;
+    cursor: pointer;
 }
 
 .break {
@@ -52,60 +53,81 @@
     justify-content: center;
 }
 
-#filter i {
-    font-size: 1.2em;
-    color: #5D6D86;
-}
-
-#devices-list {
+#object-list {
     overflow: scroll;
     scrollbar-width: none;
 }
 
-#devices-list::-webkit-scrollbar {
+#object-list::-webkit-scrollbar {
     display: none;
 }
 
-.devices-table {
+.objects-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.devices-table i {
+.objects-table i {
     font-size: 1.5em;
     margin: 2px 2px;
     color: #5D6D86;
 }
 
-.devices-table th {
+.objects-table th {
     text-align: left;
     border-bottom: 2px solid #CACED1;
     padding: 0 1em;
 }
 
-.devices-table td {
+.objects-table td {
     padding: 0 1em;
 }
 
-.devices-table td:last-child {
+.objects-table td:last-child {
     text-align: right;
+    min-width: 6em;
+}
+
+.overlay {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.1);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.popup {
+    max-width: 1000px;
+    width: 80%;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    box-shadow: 0 0 5px white;
+    z-index: 100;
 }
 
 @media only screen and (max-device-width: 1000px) {
-    #filter > form {
+    .option-bar {
         flex-direction: column;
         width: 100%;
     }
 
-    #filter form  > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    button, input {
         width: 100%;
+        margin: 0.2em 0;
+        border-radius: 0.5em;
     }
 
-    #filter form input {
-        width: 100%;
-        padding: 0.5em 0;
+    input {
+        border-width: 2px;
     }
 }

@@ -72,14 +72,9 @@ class UserController extends AppController
             $user->setPhone($tmp);
 
             $tmp = $_POST['email'] == "" ? $user->getEmail() : $_POST['email'];
-            if ($this->userRepository->userExists($tmp) && $tmp != $user->getEmail())
-            {
-                return $this->render('settings', ['messages' => ['Email already in use!']]);
-            } else
-            {
-                $user->setEmail($tmp);
-                $_SESSION['email'] = $tmp;
-            }
+            $user->setEmail($tmp);
+            $_SESSION['email'] = $tmp;
+
 
             $this->userRepository->changePersonalDetails($user);
         }
@@ -91,5 +86,39 @@ class UserController extends AppController
     {
         $users = $this->userRepository->getUsers();
         $this->render('users', ['users' => $users]);
+    }
+
+    public function addUser()
+    {
+        if (!$this->isPost() || !isset($_POST['email']))
+        {
+            return $this->render('users');
+        }
+
+        if ($this->userRepository->userExists($_POST['email']))
+        {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/users");
+            return $this->render('users', ['messages' => "User with this email already exists!"]);
+        }
+
+        $user = new User(
+            0,
+            $_POST['email'],
+            $_POST['new-password'],
+            true,
+            1234,
+            'default',
+            $_POST['name'],
+            $_POST['surname'],
+            $_POST['phone'],
+            'default',
+            $_POST['role'],
+        'null');
+
+        $this->userRepository->newUser($user);
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/users");
     }
 }
