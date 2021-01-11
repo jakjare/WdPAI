@@ -43,7 +43,7 @@
                     <td><?php echo $user->getSurname(); ?></td>
                     <td id="email"><?php echo $user->getEmail(); ?></td>
                     <td><?php echo $user->getRole(); ?></td>
-                    <td><?php echo $user->isEnabled() ? 'Active' : 'Inactive'; ?></td>
+                    <td id="status"><?php echo $user->isEnabled() ? 'Active' : 'Inactive'; ?></td>
                     <td><?php echo substr($user->getLastLogin(), 0, -7); ?></td>
                     <td><i class="fas fa-user-edit"></i><i class="fas fa-user-lock"></i><i class="fas fa-trash"></i></td>
                 </tr>

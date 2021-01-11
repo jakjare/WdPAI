@@ -19,6 +19,7 @@ Routing::post('addUser', 'UserController');
 Routing::post('editUser', 'UserController');
 Routing::post('getUserJSON', 'UserController');
 Routing::post('changeUserStatusJSON', 'UserController');
+Routing::post('deleteUserJSON', 'UserController');
 Routing::post('changePassword', 'SecurityController');
 
 Routing::run($path);

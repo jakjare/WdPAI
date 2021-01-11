@@ -28,8 +28,25 @@ actions.forEach(function (currentValue) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            currentValue.querySelector('[id="status"]').innerHTML = response ? 'Active' : 'Inactive';
         });
     });
+
+    currentValue.querySelector('.fa-trash').addEventListener('click', function () {
+        if (confirm('Are you sure want to delete this user?')) {
+            fetch("/deleteUserJSON", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            currentValue.remove();
+        }
+    })
 });
 
 exitPopupButton.addEventListener('click', function () {

@@ -53,7 +53,7 @@ class User
 
     public function changeStatus(): void
     {
-        $this->enabled ? $this->enabled = false : $this->enabled = true;
+        $this->enabled = !$this->enabled;
     }
 
     public function getSalt(): string

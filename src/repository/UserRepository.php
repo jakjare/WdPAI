@@ -84,20 +84,20 @@ class UserRepository extends Repository
         $status = $user->isEnabled();
 
         $stmt = $this->database->connect()->prepare('
-            UPDATE user_details SET name = :newName, surname = :newSurname, phone = :newPhone, enabled = :newStatus FROM users WHERE users.id_user_details = user_details.id and users.id = :userID;
+            UPDATE user_details SET name = :newName, surname = :newSurname, phone = :newPhone FROM users WHERE users.id_user_details = user_details.id and users.id = :userID;
         ');
         $stmt->bindParam(':newName', $name, PDO::PARAM_STR);
         $stmt->bindParam(':newSurname', $surname, PDO::PARAM_STR);
         $stmt->bindParam(':newPhone', $phone, PDO::PARAM_STR);
         $stmt->bindParam(':userID', $user_id, PDO::PARAM_STR);
-        $stmt->bindParam(':newStatus', $status, PDO::PARAM_BOOL);
         $stmt->execute();
 
         $stmt = $this->database->connect()->prepare('
-            UPDATE users SET email = :newEmail WHERE id = :userID;
+            UPDATE users SET email = :newEmail, enabled = :newStatus  WHERE id = :userID;
         ');
         $stmt->bindParam(':userID', $user_id, PDO::PARAM_STR);
         $stmt->bindParam(':newEmail', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':newStatus', $status, PDO::PARAM_BOOL);
         $stmt->execute();
     }
 
@@ -165,6 +165,16 @@ class UserRepository extends Repository
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':salt', $salt);
+        $stmt->execute();
+    }
+
+    public function deleteUser(User $user): void
+    {
+        $stmt = $this->database->connect()->prepare('
+            CALL delete_user(:id);
+        ');
+        $id = $user->getIdDatabase();
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 

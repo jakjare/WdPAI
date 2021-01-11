@@ -169,10 +169,8 @@ class UserController extends AppController
         }
     }
 
-    public function changeUserStatus()
+    public function changeUserStatusJSON()
     {
-        //TODO Nie działa!
-
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
         if ($contentType === "application/json") {
@@ -187,6 +185,25 @@ class UserController extends AppController
 
             $this->userRepository->changePersonalDetails($user);
 
+            echo json_encode($user->isEnabled());
+        }
+    }
+
+    public function deleteUserJSON()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $user = $this->userRepository->getUser($decoded['email']);
+            $this->userRepository->deleteUser($user);
+
+            echo json_encode($user->isEnabled());
         }
     }
 }
