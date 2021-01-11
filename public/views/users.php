@@ -54,7 +54,7 @@
     <div class="overlay">
         <div class="popup">
             <h1>New user</h1>
-            <form class="account-settings-form" action="addUser" method="post">
+            <form class="settings-form" action="addUser" method="post">
                 <input name="old-email" type="text" readonly>
                 <div>
                     <div>

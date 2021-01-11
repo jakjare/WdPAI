@@ -1,14 +1,4 @@
-button {
-    background: #63B0EB 0 0 no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 50px;
-    width: calc(100% / 3 - 20px);
-    padding: 5px;
-    color: white;
-    margin: 5px 0;
-}
-
-.account-settings-form input, .account-settings-form select{
+.settings-form input, .settings-form select{
     width: 100%;
     height: 1.5em;
     padding: 0.5em 0;
@@ -19,15 +9,19 @@ button {
     text-indent: 1em;
 }
 
-.account-settings-form select {
+.settings-form select {
     height: 2.5em;
 }
 
-.account-settings-form input[name="old-email"] {
+select[multiple] {
+    min-height: 20vh;
+}
+
+.settings-form input[name="old-email"], input[name="id"] {
     display: none;
 }
 
-.account-settings-form > div {
+.settings-form > div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 10px;
@@ -64,7 +58,7 @@ button {
 }
 
 @media only screen and (max-device-width: 1000px) {
-    .account-settings-form > div {
+    .settings-form > div {
         display: flex;
         flex-direction: column;
     }

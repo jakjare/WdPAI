@@ -178,4 +178,37 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
+    public function getUsersByRole(string $role): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM user_full WHERE description = :role;
+        ');
+        $stmt->bindParam(':role', $role);
+        $stmt->execute();
+
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user)
+        {
+            $result[] = new User(
+                $user['id'],
+                $user['email'],
+                $user['password'],
+                $user['enabled'],
+                $user['salt'],
+                $user['created_at'],
+                $user['name'],
+                $user['surname'],
+                $user['phone'],
+                $user['image'],
+                $user['description'],
+                $user['date']
+            );
+        }
+
+        return $result;
+    }
+
 }

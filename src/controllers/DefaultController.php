@@ -14,11 +14,6 @@ class DefaultController extends AppController {
         $this->render('dashboard');
     }
 
-    public function devices() {
-        // TODO display devices.php
-        $this->render('devices');
-    }
-
     public function error() {
         // TODO display error.php
         $this->render('error');
