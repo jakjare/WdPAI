@@ -38,10 +38,10 @@
                     <th style="text-align: right;"></th>
                 </tr>
                 <?php foreach ($users as $user): ?>
-                <tr id="#<?php echo $user->getIdDatabase(); ?>">
+                <tr id="<?php echo $user->getIdDatabase(); ?>">
                     <td><?php echo $user->getName(); ?></td>
                     <td><?php echo $user->getSurname(); ?></td>
-                    <td><?php echo $user->getEmail(); ?></td>
+                    <td id="email"><?php echo $user->getEmail(); ?></td>
                     <td><?php echo $user->getRole(); ?></td>
                     <td><?php echo $user->isEnabled() ? 'Active' : 'Inactive'; ?></td>
                     <td><?php echo substr($user->getLastLogin(), 0, -7); ?></td>
@@ -53,8 +53,9 @@
     </main>
     <div class="overlay">
         <div class="popup">
-            <h1>User editor</h1>
+            <h1>New user</h1>
             <form class="account-settings-form" action="addUser" method="post">
+                <input name="old-email" type="text" readonly>
                 <div>
                     <div>
                         Email address

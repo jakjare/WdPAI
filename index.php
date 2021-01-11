@@ -16,6 +16,9 @@ Routing::post('login', 'SecurityController');
 Routing::post('logout', 'SecurityController');
 Routing::post('addAvatar', 'UserController');
 Routing::post('addUser', 'UserController');
+Routing::post('editUser', 'UserController');
+Routing::post('getUserJSON', 'UserController');
+Routing::post('changeUserStatusJSON', 'UserController');
 Routing::post('changePassword', 'SecurityController');
 
 Routing::run($path);

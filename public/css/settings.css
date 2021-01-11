@@ -23,6 +23,10 @@ button {
     height: 2.5em;
 }
 
+.account-settings-form input[name="old-email"] {
+    display: none;
+}
+
 .account-settings-form > div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

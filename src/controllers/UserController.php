@@ -121,4 +121,72 @@ class UserController extends AppController
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/users");
     }
+
+    public function editUser()
+    {
+        if (!$this->isPost() || !isset($_POST['email']))
+        {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            return header("Location: {$url}/users");
+        }
+
+        $user = $this->userRepository->getUser($_POST['old-email']);
+        $_POST['email'] == $_POST['old-email'] ?: $user->setEmail($_POST['email']);
+        $_POST['new-password'] == "" ?: $user->setPassword($_POST['new-password']);
+        $_POST['name'] == $user->getName() ?: $user->setName($_POST['name']);
+        $_POST['surname'] == $user->getSurname() ?: $user->setSurname($_POST['surname']);
+        $_POST['phone'] == $user->getPhone() ?: $user->setPhone($_POST['phone']);
+        // TODO ROLE UŻYTKOWNIKA
+
+        $this->userRepository->changePersonalDetails($user);
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/users");
+    }
+
+    public function getUserJSON()
+    {
+        $result = [];
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $user = $this->userRepository->getUser($decoded['email']);
+            $result[] = [
+                "id" => $user->getIdDatabase(),
+                "email" => $user->getEmail(),
+                "name" => $user->getName(),
+                "surname" => $user->getSurname(),
+                "phone" => $user->getPhone(),
+                "role" => $user->getRole()
+            ];
+
+            echo json_encode($result);
+        }
+    }
+
+    public function changeUserStatus()
+    {
+        //TODO Nie działa!
+
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $user = $this->userRepository->getUser($decoded['email']);
+            $user->changeStatus();
+
+            $this->userRepository->changePersonalDetails($user);
+
+        }
+    }
 }

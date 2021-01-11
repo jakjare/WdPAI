@@ -81,14 +81,16 @@ class UserRepository extends Repository
         $surname = $user->getSurname();
         $phone = $user->getPhone();
         $email = $user->getEmail();
+        $status = $user->isEnabled();
 
         $stmt = $this->database->connect()->prepare('
-            UPDATE user_details SET name = :newName, surname = :newSurname, phone = :newPhone FROM users WHERE users.id_user_details = user_details.id and users.id = :userID;
+            UPDATE user_details SET name = :newName, surname = :newSurname, phone = :newPhone, enabled = :newStatus FROM users WHERE users.id_user_details = user_details.id and users.id = :userID;
         ');
         $stmt->bindParam(':newName', $name, PDO::PARAM_STR);
         $stmt->bindParam(':newSurname', $surname, PDO::PARAM_STR);
         $stmt->bindParam(':newPhone', $phone, PDO::PARAM_STR);
         $stmt->bindParam(':userID', $user_id, PDO::PARAM_STR);
+        $stmt->bindParam(':newStatus', $status, PDO::PARAM_BOOL);
         $stmt->execute();
 
         $stmt = $this->database->connect()->prepare('
