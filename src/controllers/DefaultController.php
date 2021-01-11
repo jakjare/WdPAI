@@ -19,4 +19,9 @@ class DefaultController extends AppController {
         $this->render('error');
     }
 
+    public function requests() {
+        // TODO display requests.php
+        $this->render('requests');
+    }
+
 }

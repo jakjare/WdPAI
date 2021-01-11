@@ -28,12 +28,8 @@
     margin: 0 5px;
 }
 
-input {
+input[type="text"], input[type="password"] {
     min-width: 200px;
-    background: #FFFFFF 0 0 no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 7px;
-    text-indent: 1em;
 }
 
 .break {
@@ -66,7 +62,7 @@ input {
 .objects-table th {
     text-align: left;
     border-bottom: 2px solid #CACED1;
-    padding: 0 1em;
+    padding: 10px 1em;
 }
 
 .objects-table td {

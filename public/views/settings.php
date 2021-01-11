@@ -37,7 +37,7 @@
             }
             ?>
             <h2>Personal details</h2>
-            <form class="account-settings-form" method="post" action="settings">
+            <form class="settings-form" method="post" action="settings">
                 <div>
                     <div>
                         Name
@@ -59,7 +59,7 @@
                 <button type="submit">save changes</button>
             </form>
             <h2>Security</h2>
-            <form class="account-settings-form" method="post" action="changePassword">
+            <form class="settings-form" method="post" action="changePassword">
                 <div>
                     <div>
                         Old password

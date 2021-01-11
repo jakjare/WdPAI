@@ -38,17 +38,7 @@ select[multiple] {
     height: 0;
     overflow: hidden;
     width: 0;
-}
-
-[type="file"] + label {
-    display: block;
-    text-align: center;
-    background: #63B0EB 0 0 no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 50px;
-    width: calc(100% / 3 - 20px);
-    padding: 5px 0;
-    color: white;
+    display: none;
 }
 
 .no-valid {
