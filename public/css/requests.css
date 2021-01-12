@@ -1,0 +1,128 @@
+main > div {
+    margin-bottom: 15px;
+}
+
+.request-form-div form {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-template-rows: 2.5em auto 3em;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+.request-form-div form > div {
+    border: 1px solid #5E5E5E;
+    border-radius: 0.3em;
+    padding: 0.5em;
+}
+
+.request-form-div h2 {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+#contacts {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+#contacts table {
+    width: 100%;
+    margin-top: 2em;
+    border-collapse: collapse;
+}
+
+select[name="device"] {
+    grid-column: 1;
+    grid-row: 3 / 4;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    text-indent: 0.5em;
+}
+
+#contacts td {
+    font-family: Consolas;
+    font-size: 1.4em;
+    text-indent: 1em;
+}
+
+#contacts td .avatar, #contacts td i{
+    font-size: 1.5em;
+    margin: 0;
+}
+
+#contacts td i {
+    cursor: pointer;
+    color: #5D6D86;
+}
+
+.select-user {
+    text-indent: 0;
+}
+
+.select-user label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.select-user input {
+    display: none;
+}
+
+.select-user i {
+    text-align: center;
+    transition: transform .2s ease-in-out;
+}
+
+.select-user input:checked ~ i {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#open-request {
+    display: none;
+    flex-direction: column;
+    justify-content: left;
+}
+
+#open-request > * {
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+
+#open-request i {
+    font-size: 1.2em;
+    color: #5D6D86;
+}
+
+#open-request h2 {
+    font-family: Consolas;
+}
+
+#open-request h1 {
+    text-align: center;
+}
+
+#open-request h2 {
+    text-indent: 15px;
+}
+
+#open-request p {
+    text-align: justify;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    .request-form-div form {
+        display: flex;
+        flex-direction: column;
+    }
+}

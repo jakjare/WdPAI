@@ -14,7 +14,7 @@ class Request
     private $important;
     private $read;
 
-    public function __construct(int $id, $sender, $device, string $topic, string $content, string $time, bool $archived = false, $important = false, bool $read = false)
+    public function __construct(int $id, $sender, $device, string $topic, string $content, string $time = null, bool $archived = false, $important = false, bool $read = false)
     {
         $this->id = $id;
         $this->sender = $sender;

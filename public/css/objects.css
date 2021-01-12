@@ -10,22 +10,6 @@
     width: calc(100% - 30px);
     margin: 7.5px 10px;
     display: flex;
-    align-items: center;
-}
-
-.objects * {
-    font-size: 0.9em;
-}
-
-.option-bar {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.option-bar input {
-    padding: 0.5em 0;
-    margin: 0 5px;
 }
 
 input[type="text"], input[type="password"] {
@@ -69,15 +53,18 @@ input[type="text"], input[type="password"] {
     padding: 0 1em;
 }
 
+.click {
+    cursor: pointer;
+}
+
 .bold td {
     font-weight: bold;
 }
 
 .objects-table td:last-child {
-    text-align: right;
-    width: 3em;
+    min-width: 3em;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
 }
 
 #operation_status {
@@ -109,25 +96,4 @@ input[type="text"], input[type="password"] {
     border-radius: 0.5em;
     box-shadow: 0 0 5px white;
     z-index: 100;
-}
-
-@media only screen and (max-device-width: 1000px) {
-    .option-bar {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    button, input {
-        width: 100%;
-        margin: 0.2em 0;
-        border-radius: 0.5em;
-    }
-
-    a {
-        width: 100%;
-    }
-
-    input {
-        border-width: 2px;
-    }
 }

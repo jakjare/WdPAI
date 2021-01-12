@@ -136,7 +136,7 @@ a:link {
     display: block;
 }
 
-button, [type="file"] + label, .button {
+button, [type="file"] + label {
     background: #63B0EB 0 0 no-repeat padding-box;
     text-align: center;
     border: 1px solid #707070;
@@ -153,6 +153,25 @@ input {
     border: 1px solid #707070;
     border-radius: 0.3em;
     text-indent: 1em;
+}
+
+textarea {
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 0.3em;
+    padding: 15px;
+    min-height: 40vh;
+}
+
+.option-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.option-bar input {
+    padding: 0.5em 0;
+    margin: 0 5px;
 }
 
 @media only screen and (max-device-width: 800px) and (min-device-width: 371px) {
@@ -302,6 +321,32 @@ main > div {
     padding: 15px;
 }
 
+main *{
+    font-size: 0.9em;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    .option-bar {
+        flex-direction: column;
+        width: calc(100% - 30px);
+    }
+
+    button, input {
+        width: 100%;
+        margin: 0.2em 0;
+        border-radius: 0.5em;
+        padding: 0.5em 0;
+    }
+
+    a[class="button"] {
+        width: 100%;
+    }
+
+    .hide {
+        display: none;
+    }
+
+}
 
 @media only screen and (max-device-width: 1200px) {
     nav div {

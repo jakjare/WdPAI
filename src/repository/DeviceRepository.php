@@ -86,4 +86,44 @@ class DeviceRepository extends Repository
             $device['status']
         );
     }
+
+    public function getUserDevices(User $user): array
+    {
+        if ($user->getRole() == "administrator")
+        {
+            return $this->getDeviceList();
+        }
+
+        $result = [];
+        $id = $user->getIdDatabase();
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT d.id, d.name, d.ip_address, l.name as location, os.description, os.color, d.status
+            FROM devices d
+                 LEFT JOIN locations l ON d.id_location = l.id
+                 LEFT JOIN operation_status os ON d.id_operation_status = os.id
+                 LEFT JOIN user_device ud on d.id = ud.id_device
+            WHERE ud.id_user = :id;
+        ');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $devices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($devices as $device)
+        {
+            $result[] = new Device(
+                $device['id'],
+                $device['name'],
+                '',
+                $device['ip_address'],
+                $device['location'],
+                $device['description'],
+                $device['color'],
+                $device['status']
+            );
+        }
+
+        return $result;
+    }
 }
