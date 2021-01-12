@@ -36,6 +36,37 @@ class UserRepository extends Repository
         );
     }
 
+    public function getUserById(int $id): ?User
+    {
+        $stmt =$this->database->connect()->prepare('
+            SELECT * FROM user_full WHERE id = :id
+        ');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user == false) {
+            return null;
+            //TODO zamiast zwracać nulla należy zwracać exception
+        }
+
+        return new User(
+            $user['id'],
+            $user['email'],
+            $user['password'],
+            $user['enabled'],
+            $user['salt'],
+            $user['created_at'],
+            $user['name'],
+            $user['surname'],
+            $user['phone'],
+            $user['image'],
+            $user['description'],
+            $user['date']
+        );
+    }
+
     public function userLogin(string $id, bool $succesful): void
     {
         $stmt = $this->database->connect()->prepare('

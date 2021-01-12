@@ -20,10 +20,9 @@
     </nav>
     <main class="requests, objects">
         <div class="option-bar">
-            <input name="search">
-            <button type="search"><i class="fas fa-search"></i></button>
-            <button id="newRequestButton">New</button>
-            <button id="archiveButton">Archive</button>
+            <a href="newRequest"><button id="newRequestButton">New</button></a>
+            <button id="deleteCheckedButton">Delete</button>
+            <a href="archiveRequests"><button id="archiveButton">Archive</button></a>
         </div>
         <div id="object-list">
             <table class="objects-table">
@@ -34,13 +33,15 @@
                     <th>Time</th>
                     <th></th>
                 </tr>
-                    <tr id="">
+                <?php foreach ($requests as $request): ?>
+                    <tr class="<?php echo $request->isRead() ? '' : 'bold'?>" id="<?php echo $request->getId(); ?>">
                         <td><input type="checkbox"></td>
-                        <td>Olivia East</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                        <td>2020.11.03 10:02:03</td>
+                        <td><?php echo $request->getSender()->getName().' '.$request->getSender()->getSurname(); ?></td>
+                        <td><?php echo $request->getTopic(); ?></td>
+                        <td><?php echo $request->getTime(); ?></td>
                         <td><i class="fas fa-archive"></i></td>
                     </tr>
+                <?php endforeach; ?>
             </table>
         </div>
     </main>

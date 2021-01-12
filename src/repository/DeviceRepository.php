@@ -60,4 +60,30 @@ class DeviceRepository extends Repository
         $stmt->bindParam(':permissions', $id_user);
         $stmt->execute();
     }
+
+    public function getDeviceById(int $id)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT d.id, d.name, d.ip_address, l.name as location, os.description, os.color, d.status
+            FROM devices d
+                LEFT JOIN locations l ON d.id_location = l.id 
+                LEFT JOIN operation_status os ON d.id_operation_status = os.id
+            WHERE d.id = :id;
+        ');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $device = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Device(
+            $device['id'],
+            $device['name'],
+            '',
+            $device['ip_address'],
+            $device['location'],
+            $device['description'],
+            $device['color'],
+            $device['status']
+        );
+    }
 }
