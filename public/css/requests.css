@@ -39,7 +39,7 @@ select[name="device"] {
 }
 
 #contacts td {
-    font-family: Consolas;
+    font-family: Consolas, monospace;
     font-size: 1.4em;
     text-indent: 1em;
 }
@@ -102,7 +102,7 @@ select[name="device"] {
 }
 
 #open-request h2 {
-    font-family: Consolas;
+    font-family: Consolas, monospace;
     text-indent: 15px;
 }
 

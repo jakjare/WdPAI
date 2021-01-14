@@ -32,7 +32,7 @@
             <?php
             if(isset($messages)) {
                 foreach ($messages as $message) {
-                    echo "<div class=\"messeges\">".$message."</div>";
+                    echo "<div class=\"messages\">".$message."</div>";
                 }
             }
             ?>
@@ -40,19 +40,19 @@
             <form class="settings-form" method="post" action="settings">
                 <div>
                     <div>
-                        Name
+                        <label>Name</label>
                         <input name="name" type="text" placeholder="<?php echo $name ?>">
                     </div>
                     <div>
-                        Surname
+                        <label>Surname</label>
                         <input name="surname" type="text" placeholder="<?php echo $surname ?>">
                     </div>
                     <div>
-                        Email address
+                        <label>Email address</label>
                         <input name="email" type="text" placeholder="<?php echo $email ?>">
                     </div>
                     <div>
-                        Phone number
+                        <label>Phone number</label>
                         <input name="phone" type="text" placeholder="<?php echo $phone === '0' ? 'None set' : $phone?>">
                     </div>
                 </div>
@@ -62,15 +62,15 @@
             <form class="settings-form" method="post" action="changePassword">
                 <div>
                     <div>
-                        Old password
+                        <label>Old password</label>
                         <input name="current-password" type="password">
                     </div>
                     <div>
-                        New password
+                        <label>New password</label>
                         <input name="new-password" type="password">
                     </div>
                     <div>
-                        Confirm new password
+                        <label>Confirm new password</label>
                         <input name="confirm-password" type="password">
                     </div>
                 </div>

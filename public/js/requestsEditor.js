@@ -1,5 +1,5 @@
 const table = document.querySelector('.objects-table');
-const allCheckbox = table.querySelector('#chceck-all');
+const allCheckbox = table.querySelector('#check-all');
 const oneCheckbox = table.querySelectorAll('tr[id]');
 const openRequestBlock = document.querySelector('div[id="open-request"]');
 const deleteCheckedButton = document.querySelector('#deleteCheckedButton');

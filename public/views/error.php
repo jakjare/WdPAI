@@ -13,7 +13,7 @@
         <?php
         if(isset($messages)) {
             foreach ($messages as $message) {
-                echo "<div class=\"messeges\">".$message."</div>";
+                echo "<div class=\"messages\">".$message."</div>";
             }
         }
         ?>

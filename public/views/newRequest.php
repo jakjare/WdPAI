@@ -28,7 +28,7 @@
         <?php
         if(isset($message))
         {
-            echo "<div class=\"messeges\">".$message."</div>";
+            echo "<div class=\"messages\">".$message."</div>";
         }
         ?>
         <div class="request-form-div">

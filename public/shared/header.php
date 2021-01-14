@@ -1,6 +1,6 @@
 <?php session_start() ?>
 
-<a href="dashboard"><img src="public/img/icon_admingate.svg"></a>
+<a href="dashboard"><img src="public/img/icon_admingate.svg" alt="admingate icon"></a>
 <a href="#" class="push"><i class="far fa-bell"></i></a>
 <a href="settings"><i class="fas fa-cog"></i></a>
 <div class="user-header">

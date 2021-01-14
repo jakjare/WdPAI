@@ -23,7 +23,7 @@
     <main class="objects">
         <div class="option-bar">
             <input name="search">
-            <button type="search"><i class="fas fa-search"></i></button>
+            <button><i class="fas fa-search"></i></button>
             <button id="userAddButton">Add user</button>
         </div>
         <div id="object-list">

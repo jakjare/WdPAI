@@ -24,56 +24,57 @@
             <div><h1>Administrator's panel</h1></div>
             <div class="option-bar, option-bar-1">
                 <input name="search">
-                <button type="search"><i class="fas fa-search"></i></button>
-                <a href="newProblem"><button><i class="fas fa-plus"></i></button></a>
+                <button><i class="fas fa-search"></i></button>
+                <a href="newProblem">
+                    <button><i class="fas fa-plus"></i></button>
+                </a>
             </div>
             <div class="problems">
                 <?php foreach ($problems as $problem): ?>
-                <div class="problem-box">
-                    <h2>STATUS: <?php echo strtoupper($problem->getProblemStatus()); ?></h2>
-                    <i class="far fa-clock"></i><label><?php echo $problem->getDate(); ?></label>
-                    <i class="fas fa-server"></i><label><?php echo $problem->getDevice()->getName(); ?></label>
-                    <i class="fas fa-hammer"></i><label><?php echo $problem->getAckUser() == null ? 'No' : $problem->getAckUser()->getName()." ".$problem->getAckUser()->getSurname(); ?></label>
-                    <i class="fas fa-hourglass-half"></i><label><?php echo $problem->getDuration(); ?></label>
-                    <i class="fas fa-address-card"></i><label><?php echo $problem->getReportingUser()->getName()." ".$problem->getReportingUser()->getSurname(); ?></label>
-                    <p><?php echo $problem->getDescription(); ?></p>
-                    <button id="<?php echo $problem->getId(); ?>"><i class="fas fa-info"></i></button>
-                    <button><i class="fas fa-reply"></i></button>
-                    <button><i class="fas fa-check"></i></button>
-                </div>
+                    <div class="problem-box">
+                        <h2>STATUS: <?php echo strtoupper($problem->getProblemStatus()); ?></h2>
+                        <i class="far fa-clock"></i><label><?php echo $problem->getDate(); ?></label>
+                        <i class="fas fa-server"></i><label><?php echo $problem->getDevice()->getName(); ?></label>
+                        <i class="fas fa-hammer"></i><label><?php echo $problem->getAckUser() == null ? 'No' : $problem->getAckUser()->getName() . " " . $problem->getAckUser()->getSurname(); ?></label>
+                        <i class="fas fa-hourglass-half"></i><label><?php echo $problem->getDuration(); ?></label>
+                        <i class="fas fa-address-card"></i><label><?php echo $problem->getReportingUser()->getName() . " " . $problem->getReportingUser()->getSurname(); ?></label>
+                        <p><?php echo $problem->getDescription(); ?></p>
+                        <button id="<?php echo $problem->getId(); ?>"><i class="fas fa-info"></i></button>
+                        <button><i class="fas fa-reply"></i></button>
+                        <button><i class="fas fa-check"></i></button>
+                    </div>
                 <?php endforeach; ?>
             </div>
             <div class="option-bar, option-bar-2">
-                <button><i class="fas fa-laptop-medical"></i>  remote controll</button>
+                <button><i class="fas fa-laptop-medical"></i> remote control</button>
                 <button><i class="fas fa-redo"></i></button>
                 <button><i class="fas fa-chart-bar"></i></button>
             </div>
             <div class="more-info">
                 <h2>Click info button to load more information.</h2>
             </div>
-        </div>
-        </main>
-        <div class="overlay">
-            <div id="problemReply" class="popup">
-                <h1>Send reply</h1>
-                <form id="problemReplyForm" class="settings-form" action="replyProblem" method="post">
-                    <input name="id" type="text" readonly>
+    </div>
+    </main>
+    <div class="overlay">
+        <div id="problemReply" class="popup">
+            <h1>Send reply</h1>
+            <form id="problemReplyForm" class="settings-form" action="replyProblem" method="post">
+                <input name="id" type="text" readonly>
+                <div>
                     <div>
-                        <div>
-                            Change status
-                            <select name="status">
-                                <?php foreach ($statuses as $status): ?>
-                                    <option value="<?php echo $status->getId(); ?>"><?php echo $status->getName(); ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                        <label>Change status</label>
+                        <select name="status">
+                            <?php foreach ($statuses as $status): ?>
+                                <option value="<?php echo $status->getId(); ?>"><?php echo $status->getName(); ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    Request
-                    <textarea name="content" placeholder="Here type your request."></textarea>
-                    <button type="submit">send</button>
-                </form>
-                <button id="exitPopupButton">exit</button>
-            </div>
+                </div>
+                <label>Request</label>
+                <textarea name="content" placeholder="Here type your request."></textarea>
+                <button type="submit">send</button>
+            </form>
+            <button id="exitPopupButton">exit</button>
         </div>
     </div>
 </body>

@@ -31,7 +31,7 @@
         <div id="object-list">
             <table class="objects-table">
                 <tr>
-                    <th style="width: 10px"><input id="chceck-all" type="checkbox"></th>
+                    <th style="width: 10px"><input id="check-all" type="checkbox"></th>
                     <th>Sender</th>
                     <th>Topic</th>
                     <th class="hide">Time</th>
