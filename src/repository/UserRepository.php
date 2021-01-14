@@ -96,6 +96,17 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
+    public function deleteSession(): void
+    {
+        session_start();
+        $session_id = session_id();
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM active_sessions WHERE id = :session_id;
+        ');
+        $stmt->bindParam(':session_id', $session_id);
+        $stmt->execute();
+    }
+
     public function setImage(string $email, string $newImageName): void
     {
         $stmt = $this->database->connect()->prepare('

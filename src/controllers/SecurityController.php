@@ -52,7 +52,7 @@ class SecurityController extends AppController
 
     public function logout()
     {
-        $this->permissionRepository->deleteSession();
+        $this->userRepository->deleteSession();
         session_start();
         session_unset();
         session_destroy();

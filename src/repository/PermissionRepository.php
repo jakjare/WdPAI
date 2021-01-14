@@ -38,15 +38,4 @@ class PermissionRepository extends Repository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function deleteSession(): void
-    {
-        session_start();
-        $session_id = session_id();
-        $stmt = $this->database->connect()->prepare('
-            DELETE FROM active_sessions WHERE id = :session_id;
-        ');
-        $stmt->bindParam(':session_id', $session_id);
-        $stmt->execute();
-    }
 }
