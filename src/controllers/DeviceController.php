@@ -65,4 +65,20 @@ class DeviceController extends AppController
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/devices");
     }
+
+    public function revokePermissionJSON()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $user = $this->userRepository->getUser($decoded['email']);
+            $this->deviceRepository->revokePermission($user->getIdDatabase(), intval($decoded['id_device']));
+        }
+    }
 }

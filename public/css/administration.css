@@ -1,0 +1,147 @@
+main {
+    display: grid;
+    grid-template-rows: repeat(2, min-content) auto;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 20px;
+    column-gap: 15px;
+}
+
+main > div:first-child {
+    grid-column: 1 / 5;
+}
+
+.option-bar-1 {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+.option-bar-2 {
+    grid-column: 3 / 5;
+    grid-row: 2;
+}
+
+.problems {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.problem-box{
+    width: calc(100% - 10px);
+    min-height: 120px;
+    border-radius: 0.3em;
+    background-color: #ECF1F8;
+    display: grid;
+    grid-template-columns: repeat(3, 1.5em 1fr);
+    grid-template-rows: repeat(5, auto);
+    padding: 5px;
+    row-gap: 5px;
+    column-gap: 5px;
+    margin-bottom: 15px;
+}
+
+.problem-box > h2 {
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 1.1em;
+    font-family: Consolas;
+    font-weight: bold;
+}
+
+.problem-box > p {
+    grid-column: 1 / 7;
+    grid-row: 4;
+    margin: 0 5px;
+}
+
+.problem-box > label, .problem-box > i {
+    color: #5D6D86;
+}
+
+.problem-box > i {
+    margin: 0 5px;
+}
+
+.problem-box > button, .objects-table button {
+    grid-column: span 2;
+    grid-row-start: 5;
+    background-color: #DAF6FA;
+    color: #3BCEE6;
+    border-color: #3BCEE6;
+    border-radius: 0.5em;
+}
+
+.objects-table button {
+    min-width: 40px;
+}
+
+.more-info {
+    grid-column: 3 / 5;
+    grid-row: 3;
+    display: grid;
+    grid-template-rows: repeat(3, min-content auto);
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.more-info > h2 {
+    font-size: 1.1em;
+    font-family: Consolas;
+}
+
+.device-info {
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    grid-template-rows: repeat(6, min-content) auto;
+    column-gap: 15px;
+}
+
+.device-info > h3 {
+    grid-column-start: 1;
+    text-align: right;
+    font-weight: bold;
+}
+
+.device-info > h2 {
+    grid-column: 1 / 3;
+    border-bottom: 2px solid #CACED1;
+    margin: 10px 0;
+}
+
+.device-info > #object-list {
+    grid-column: 1 / 3;
+}
+
+.device-info > p {
+    grid-column: 1 / 3;
+    text-align: justify;
+    padding: 0 1em;
+}
+
+.device-info > label {
+    grid-column-start: 2;
+}
+
+.new-problem {
+    grid-column: 1 / 5;
+    grid-row: 2 / 4;
+}
+
+.new-problem > form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(2, min-content) auto min-content;
+    row-gap: 10px;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .more-info {
+        min-width: 500px;
+    }
+}

@@ -1,7 +1,7 @@
 const overlay = document.querySelector('div[class="overlay"]');
 const userAddButton = document.querySelector('button[id="userAddButton"]');
 const exitPopupButton = document.querySelector('button[id="exitPopupButton"]');
-const userEditorForm = overlay.querySelector('form[class="account-settings-form"]');
+const userEditorForm = overlay.querySelector('form[class="settings-form"]');
 const actions = document.querySelector('table[class="objects-table"]').querySelectorAll('tr[id]');
 const form = overlay.querySelector('form');
 
@@ -53,11 +53,11 @@ exitPopupButton.addEventListener('click', function () {
     overlay.style.display = 'none';
     overlay.querySelector('h1').innerText = "New user";
     form.action = 'addUser';
-    userEditorForm.reset();
 });
 
 userAddButton.addEventListener('click', function () {
     overlay.style.display = 'flex';
+    userEditorForm.reset();
 });
 
 function editExistingUser(user)

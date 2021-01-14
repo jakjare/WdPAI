@@ -41,7 +41,9 @@ class RequestController extends AppController
             }
         }
 
-        $this->render('requests', ["requests" => $requests, "archived" => $archived]);
+        $this->messages["requests"] = $requests;
+        $this->messages["archived"] = $archived;
+        $this->render('requests', $this->messages);
     }
 
     public function archiveRequests()

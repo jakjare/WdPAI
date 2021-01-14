@@ -25,7 +25,6 @@ class UserRepository extends Repository
             $user['email'],
             $user['password'],
             $user['enabled'],
-            $user['salt'],
             $user['created_at'],
             $user['name'],
             $user['surname'],
@@ -56,7 +55,6 @@ class UserRepository extends Repository
             $user['email'],
             $user['password'],
             $user['enabled'],
-            $user['salt'],
             $user['created_at'],
             $user['name'],
             $user['surname'],
@@ -67,7 +65,7 @@ class UserRepository extends Repository
         );
     }
 
-    public function userLogin(string $id, bool $succesful): void
+    public function userLogin(int $id, bool $succesful): void
     {
         $stmt = $this->database->connect()->prepare('
             INSERT INTO login_history VALUES (DEFAULT, :userID, DEFAULT, :userIP, :succesful);
@@ -79,7 +77,26 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
-    public function setImage(string $email, string $newImageName)
+    public function setSession(int $id): void
+    {
+        session_start();
+        $session_id = session_id();
+
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM active_sessions WHERE id = :session_id;
+        ');
+        $stmt->bindParam(':session_id', $session_id);
+        $stmt->execute();
+
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO active_sessions VALUES (:session_id, :userID, DEFAULT, DEFAULT);
+        ');
+        $stmt->bindParam(':session_id', $session_id);
+        $stmt->bindParam(':userID', $id);
+        $stmt->execute();
+    }
+
+    public function setImage(string $email, string $newImageName): void
     {
         $stmt = $this->database->connect()->prepare('
             UPDATE user_details SET image = :newImage FROM users WHERE users.id_user_details = user_details.id and users.email = :email
@@ -105,7 +122,7 @@ class UserRepository extends Repository
         return true;
     }
 
-    public function changePersonalDetails(User $user)
+    public function changePersonalDetails(User $user): void
     {
         $user_id = $user->getIdDatabase();
         $name = $user->getName();
@@ -113,6 +130,7 @@ class UserRepository extends Repository
         $phone = $user->getPhone();
         $email = $user->getEmail();
         $status = $user->isEnabled();
+        $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 
         $stmt = $this->database->connect()->prepare('
             UPDATE user_details SET name = :newName, surname = :newSurname, phone = :newPhone FROM users WHERE users.id_user_details = user_details.id and users.id = :userID;
@@ -124,15 +142,16 @@ class UserRepository extends Repository
         $stmt->execute();
 
         $stmt = $this->database->connect()->prepare('
-            UPDATE users SET email = :newEmail, enabled = :newStatus  WHERE id = :userID;
+            UPDATE users SET email = :newEmail, password = :password, enabled = :newStatus  WHERE id = :userID;
         ');
         $stmt->bindParam(':userID', $user_id, PDO::PARAM_STR);
         $stmt->bindParam(':newEmail', $email, PDO::PARAM_STR);
         $stmt->bindParam(':newStatus', $status, PDO::PARAM_BOOL);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
     }
 
-    public function updatePassword(User $user)
+    public function updatePassword(User $user): void
     {
         $password = $user->getPassword();
         $user_id = $user->getIdDatabase();
@@ -162,7 +181,6 @@ class UserRepository extends Repository
                 $user['email'],
                 $user['password'],
                 $user['enabled'],
-                $user['salt'],
                 $user['created_at'],
                 $user['name'],
                 $user['surname'],
@@ -183,11 +201,10 @@ class UserRepository extends Repository
         $phone = $user->getPhone();
         $role = $user->getRole();
         $email = $user->getEmail();
-        $password = $user->getPassword();
-        $salt = $user->getSalt();
+        $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 
         $stmt = $this->database->connect()->prepare('
-            CALL add_user(:name, :surname, :phone, :role, :email, :password, :salt);
+            CALL add_user(:name, :surname, :phone, :role, :email, :password);
         ');
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':surname', $surname);
@@ -195,7 +212,6 @@ class UserRepository extends Repository
         $stmt->bindParam(':role', $role, PDO::PARAM_INT);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':salt', $salt);
         $stmt->execute();
     }
 
@@ -228,7 +244,6 @@ class UserRepository extends Repository
                 $user['email'],
                 $user['password'],
                 $user['enabled'],
-                $user['salt'],
                 $user['created_at'],
                 $user['name'],
                 $user['surname'],

@@ -107,7 +107,6 @@ class UserController extends AppController
             $_POST['email'],
             $_POST['new-password'],
             true,
-            1234,
             'default',
             $_POST['name'],
             $_POST['surname'],

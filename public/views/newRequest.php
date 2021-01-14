@@ -57,7 +57,7 @@
                     <?php endforeach; ?>
                 </select>
                 <input name="topic" type="text" placeholder="Topic">
-                <textarea name="content"></textarea>
+                <textarea name="content" placeholder="Here type your request."></textarea>
                 <button type="submit">Send</button>
             </form>
         </div>

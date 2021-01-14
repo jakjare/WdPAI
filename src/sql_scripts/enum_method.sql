@@ -1,0 +1,1 @@
+CREATE TYPE open_method AS ENUM ('post', 'get');

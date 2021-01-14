@@ -6,7 +6,6 @@ class User
     private $email;
     private $password;
     private $enabled;
-    private $salt;
     private $created_at;
     private $name;
     private $surname;
@@ -15,7 +14,7 @@ class User
     private $role;
     private $last_login;
 
-    public function __construct(int $id_database, string $email, string $password, bool $enabled, string $salt, string $created_at, string $name, string $surname, string $phone, string $image, string $role, string $last_login)
+    public function __construct(int $id_database, string $email, string $password, bool $enabled, string $created_at, string $name, string $surname, string $phone, string $image, string $role, ?string $last_login)
     {
         $this->id_database = $id_database;
         $this->email = $email;
@@ -56,16 +55,6 @@ class User
         $this->enabled = !$this->enabled;
     }
 
-    public function getSalt(): string
-    {
-        return $this->salt;
-    }
-
-    public function setSalt(string $salt): void
-    {
-        $this->salt = $salt;
-    }
-
     public function setImage(string $image): void
     {
         $this->image = $image;
@@ -101,7 +90,7 @@ class User
         $this->email = $email;
     }
 
-    public function getLastLogin(): string
+    public function getLastLogin(): ?string
     {
         return $this->last_login;
     }

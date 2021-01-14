@@ -5,6 +5,7 @@ require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/UserController.php';
 require_once 'src/controllers/DeviceController.php';
 require_once 'src/controllers/RequestController.php';
+require_once 'src/controllers/AdministrationController.php';
 
 class Routing {
     public static $routes;
@@ -18,6 +19,17 @@ class Routing {
     }
 
     public static function run($url) {
+        $securityController = new SecurityController();
+        $pages = $securityController->getPages();
+
+        foreach ($pages as $page)
+        {
+            if ($page['method'] == null) {
+                break;
+            }
+            $method = $page['method'];
+            self::$method($page['url'], $page['controller']);
+        }
         $action = explode("/", $url)[0];
 
         if(!array_key_exists($action, self::$routes)) {

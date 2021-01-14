@@ -36,9 +36,6 @@ main > div {
 select[name="device"] {
     grid-column: 1;
     grid-row: 3 / 4;
-    border: 1px solid black;
-    border-radius: 0.5em;
-    text-indent: 0.5em;
 }
 
 #contacts td {

@@ -36,7 +36,7 @@ input[type="text"], input[type="password"] {
     border-collapse: collapse;
 }
 
-.objects-table i {
+.objects-table td > i {
     font-size: 1.5em;
     margin: 2px 2px;
     color: #5D6D86;

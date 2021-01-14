@@ -1,4 +1,4 @@
-.settings-form input, .settings-form select{
+.settings-form input, .settings-form select, .settings-form textarea{
     width: 100%;
     height: 1.5em;
     padding: 0.5em 0;
@@ -17,7 +17,7 @@ select[multiple] {
     min-height: 20vh;
 }
 
-.settings-form input[name="old-email"], input[name="id"] {
+input[readonly] {
     display: none;
 }
 

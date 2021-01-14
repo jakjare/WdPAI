@@ -126,4 +126,32 @@ class DeviceRepository extends Repository
 
         return $result;
     }
+
+    public function getPermissionIdUsers(int $id_device): array
+    {
+        $result = [];
+        $stmt = $this->database->connect()->prepare('
+            SELECT id_user FROM user_device WHERE id_device = :id;
+        ');
+        $stmt->bindParam(':id', $id_device);
+        $stmt->execute();
+        $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($permissions as $permission)
+        {
+            $result[] = new ArrayObject(["id_user" => $permission['id_user']]);
+        }
+
+        return $result;
+    }
+
+    public function revokePermission(int $id_user, int $id_device)
+    {
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM user_device WHERE id_user = :id_user AND id_device = :id_device;
+        ');
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->bindParam(':id_device', $id_device);
+        $stmt->execute();
+    }
 }
