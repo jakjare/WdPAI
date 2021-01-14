@@ -257,4 +257,14 @@ class UserRepository extends Repository
         return $result;
     }
 
+    public function getOnlineStats(): int
+    {
+        $stmt = $this->database->connect()->prepare("
+            SELECT COUNT(id) AS online FROM active_sessions WHERE last_update + INTERVAL '10 min' > current_timestamp GROUP BY id_user;
+        ");
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['online'];
+    }
+
 }

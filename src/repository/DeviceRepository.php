@@ -154,4 +154,14 @@ class DeviceRepository extends Repository
         $stmt->bindParam(':id_device', $id_device);
         $stmt->execute();
     }
+
+    public function getOnlineStats(): int
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT COUNT(id) as online FROM devices WHERE status = true;
+        ');
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['online'];
+    }
 }

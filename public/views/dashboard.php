@@ -4,18 +4,6 @@
     <link rel="stylesheet" type="text/css" href="public/css/dashboard.css">
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
     <title>AdminGate - dashboard</title>
-    <script>
-        function settingsProblem(block_id) {
-            block_id = block_id + '-box';
-            if (document.getElementById(block_id).style.display == "none")
-            {
-                document.getElementById(block_id).style.display = "block";
-
-            } else {
-                document.getElementById(block_id).style.display = "none";
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="base-container">
@@ -33,52 +21,56 @@
             <div id="status">
                 <div style="font-weight: bold;">Your dashboard</div>
                 <div class="special">server time</div>
-                <div>24.11.2020 / 21:58</div>
+                <div>
+                    <?php session_start();
+                    echo substr($_SESSION['server-time'], 0, 19); ?>
+                </div>
 
             </div>
             <div id="online-users" class="info-block">
                 <i class="fas fa-user"></i>
                 <div>
                     <p>Users online</p>
-                    <p>23</p>
+                    <p><?php echo $users_online; ?></p>
                 </div>
             </div>
             <div id="online-devices" class="info-block">
                 <i class="fas fa-server"></i>
                 <div>
                     <p>Devices online</p>
-                    <p>64</p>
+                    <p><?php echo $devices_online; ?></p>
                 </div>
             </div>
             <div id="today-problems" class="info-block">
                 <i class="far fa-clock"></i>
                 <div>
-                    <p>Today's problems</p>
-                    <p>2</p>
+                    <p>Unsolved problems</p>
+                    <p><?php echo count($problems); ?></p>
                 </div>
             </div>
             <div id="problems">
                 <div>
                     <div>Problems</div>
-                    <button id="problem-settings" onclick="settingsProblem('problem-settings')"><i class="fas fa-ellipsis-v"></i><div id="problem-settings-box" class="settings-box" style="display: none;"><a href="login">exit</a></div></button>
                 </div>
                 <table id="table-problems">
                     <tr>
                         <th style="width: 10%">Time</th>
                         <th style="width: 15%">Status</th>
                         <th style="width: 15%">Host</th>
-                        <th style="width: 40%">Problems</th>
+                        <th style="width: 40%">Description</th>
                         <th style="width: 10%">Duration</th>
                         <th style="width: 10%">Ack</th>
                     </tr>
+                    <?php foreach ($problems as $problem): ?>
                     <tr>
-                        <td>10:04:12</td>
-                        <td>PROBLEM</td>
-                        <td>WIN_23_55XJ</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia urna vitae porta. dapibus. Nulla facilisi. [...]</td>
-                        <td>27m 30s</td>
-                        <td>No</td>
+                        <td><?php echo $problem->getDate(); ?></td>
+                        <td><?php echo strtoupper($problem->getProblemStatus()); ?></td>
+                        <td><?php echo $problem->getDevice(); ?></td>
+                        <td><?php echo $problem->getDescription(); ?></td>
+                        <td><?php echo $problem->getDuration(); ?></td>
+                        <td><?php echo $problem->getAckUser() != null ? "Yes" : "No"; ?></td>
                     </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
             <div id="users">
@@ -87,24 +79,15 @@
                     <a href="users">View all</a>
                 </div>
                 <table>
+                    <?php foreach ($users as $user):
+                        if ($user->getEmail() == $_SESSION['email']) {
+                            continue;
+                        } ?>
                     <tr>
-                        <td><div class="avatar"></div></td>
-                        <td style="width: 80%">Olivia East</td>
-                        <td><button id="user-1-settings" onclick="settingsProblem('user-1-settings')"><i class="fas fa-ellipsis-v"></i><div id="user-1-settings-box" class="settings-box" style="display: none;">callasdasasdasdasadadadadada dadadadadada dadadadadadadadadadada dadadadadaddsadssad</div></button></td>
+                        <td><div class="avatar" style="background: transparent url('<?php echo '../public/uploads/users_avatars/'.$user->getImage(); ?>') no-repeat center; background-size: 1.8em;"></div></td>
+                        <td style="width: 80%"><?php echo $user->getName().' '.$user->getSurname(); ?></td>
                     </tr>
-                </table>
-            </div>
-            <div id="room-status">
-                <div>
-                    <div>Room status</div>
-                    <button id="room-settings" onclick="settingsProblem('room-settings')"><i class="fas fa-ellipsis-v"></i><div id="room-settings-box" class="settings-box" style="display: none;">callasdasasdasdadsadssad</div></button>
-                </div>
-                <table>
-                    <tr>
-                        <td style="width: 50%">Room_1F_C</td>
-                        <td style="width: 25%">3 / 11</td>
-                        <td style="width: 25%"><a href="#" class="special">Check</a></td>
-                    </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
         </main>

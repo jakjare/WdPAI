@@ -1,11 +1,19 @@
 <?php
 
+require_once __DIR__ . '/../repository/PermissionRepository.php';
+
 class AppController {
 
     private $request;
 
     public function  __construct() {
         $this->request = $_SERVER['REQUEST_METHOD'];
+    }
+
+    public function getPages(): array
+    {
+        $permissionRepository = new PermissionRepository();
+        return $permissionRepository->getPages();
     }
 
     protected function isPost(): bool {

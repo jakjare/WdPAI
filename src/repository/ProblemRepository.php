@@ -111,6 +111,24 @@ class ProblemRepository extends Repository
         $stmt->execute();
     }
 
+    public function getUserProblems(User $user): array
+    {
+        $id_user = $user->getIdDatabase();
+        $format = self::TIME_FORMAT;
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT to_char(age(current_timestamp, p.date), :format) as duration, p.*, ps.name FROM problems p LEFT JOIN problem_status ps on p.id_problem_status = ps.id WHERE id_reporting_user = :id_user AND id_problem_status <> 2 ORDER BY p.date DESC;
+
+        ');
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->bindParam(':format', $format);
+        $stmt->execute();
+
+        $problems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->prepareResult($problems);
+    }
+
     private function prepareResult(array $problems): array
     {
         $result = [];

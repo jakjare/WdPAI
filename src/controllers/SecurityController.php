@@ -3,25 +3,15 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
-require_once __DIR__ . '/../repository/PermissionRepository.php';
 
 class SecurityController extends AppController
 {
-    private $permissionRepository;
     private $userRepository;
 
     public function __construct()
     {
         parent::__construct();
-        $this->permissionRepository = new PermissionRepository();
         $this->userRepository = new UserRepository();
-    }
-
-
-    public function getPages(): array
-    {
-        $permissionRepository = new PermissionRepository();
-        return $permissionRepository->getPages();
     }
 
     public function login()

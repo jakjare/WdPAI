@@ -1,5 +1,6 @@
 <?php
 
+require_once 'src/controllers/AppController.php';
 require_once 'src/controllers/DefaultController.php';
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/UserController.php';
@@ -19,8 +20,8 @@ class Routing {
     }
 
     public static function run($url) {
-        $securityController = new SecurityController();
-        $pages = $securityController->getPages();
+        $appController = new AppController();
+        $pages = $appController->getPages();
 
         foreach ($pages as $page)
         {

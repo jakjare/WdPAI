@@ -18,6 +18,13 @@ class PermissionRepository extends Repository
         $stmt->execute();
 
         $stmt = $this->database->connect()->prepare("
+            SELECT current_timestamp as server_time;
+        ");
+        $stmt->execute();
+
+        $_SESSION['server-time'] = $stmt->fetch(PDO::FETCH_ASSOC)['server_time'];
+
+        $stmt = $this->database->connect()->prepare("
             SELECT p.* FROM active_sessions sessions
             LEFT JOIN users u on sessions.id_user = u.id
             LEFT JOIN user_details ud on u.id_user_details = ud.id
