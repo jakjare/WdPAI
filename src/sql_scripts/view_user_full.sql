@@ -1,10 +1,9 @@
 create view user_full
-            (id, email, password, enabled, salt, created_at, name, surname, phone, image, description, date) as
+            (id, email, password, enabled, created_at, name, surname, phone, image, description, date) as
 SELECT users.id,
        users.email,
        users.password,
        users.enabled,
-       users.salt,
        users.created_at,
        user_details.name,
        user_details.surname,

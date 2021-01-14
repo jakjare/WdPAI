@@ -4,8 +4,7 @@ CREATE OR REPLACE PROCEDURE add_user(
     phone varchar,
     role int,
     email varchar,
-    password varchar,
-    salt int
+    password varchar
 )
     LANGUAGE plpgsql
 AS $$
