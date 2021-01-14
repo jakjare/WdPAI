@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/login.css">
     <script src="https://kit.fontawesome.com/1ac581c2b0.js" crossorigin="anonymous"></script>
     <title>Login to AdminGate</title>
 </head>

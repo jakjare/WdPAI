@@ -42,8 +42,8 @@ input[readonly] {
 }
 
 .no-valid {
-    border: 3px solid red !important;
-    box-shadow: 0 0 0.2em red !important;
+    border: 3px solid red;
+    box-shadow: 0 0 0.2em red;
     outline: none;
 }
 

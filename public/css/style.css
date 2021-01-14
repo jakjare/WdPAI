@@ -37,52 +37,6 @@ a:link {
     flex-wrap: wrap;
 }
 
-.graphic {
-    background: transparent linear-gradient(143deg, #63B0EB 0%, #87C5F5 100%) 0 0 no-repeat padding-box;
-    width: 40%;
-    height: 100%;
-}
-
-.login-container {
-    width: 60%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    }
-
-.login-container img {
-    width: 50%;
-}
-
-.login-container .social {
-    width: calc(3 * 1em + 8em);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.login-container form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 70%;
-    min-height: 40%;
-}
-
-.login-container form input {
-    width: 100%;
-    height: 3em;
-    background: #FFFFFF 0 0 no-repeat padding-box;
-    box-shadow: 8px 10px 10px #00000029;
-    border: 1px solid #707070;
-    border-radius: 15px;
-    font-family: 'FontAwesome', 'Segoe UI';
-    text-indent: 1em;
-}
-
 .messeges {
     color: red;
     text-align: center;
@@ -95,32 +49,7 @@ a:link {
     margin: 0.5em 0;
 }
 
-.login-container form button {
-    background: #63B0EB 0 0 no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 50px;
-    width: 40%;
-    height: 2.3em;
-    color: white;
-}
-
-.login-container form > a {
-    align-self: flex-start;
-    text-align: right;
-    width: 100%;
-    margin-bottom: 1em;
-    font-size: 0.8em;
-    color: #707070;
-}
-
-.login-container form i {
-    font-size: 2em;
-    width: 10%;
-    color: #707070;
-    align-self: baseline;
-}
-
-.social a{
+.social a {
     border: 2px solid;
     border-radius: 100%;
     padding: 0.5em;
@@ -187,33 +116,11 @@ textarea {
         font-size: 36px;
     }
 
-    .graphic{
+    .graphic {
         display: none;
     }
 
-    .login-container{
-        width: 100%;
-    }
-
-    .login-container img {
-        width: 80%;
-    }
-
-    .login-container form button {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-device-width: 370px) {
-    * {
-        font-size: 50px;
-    }
-
-    .graphic{
-        display: none;
-    }
-
-    .login-container{
+    .login-container {
         width: 100%;
     }
 
@@ -238,7 +145,7 @@ header {
     z-index: 100;
 }
 
-header a > img{
+header a > img {
     height: 1.8em;
 }
 
@@ -329,7 +236,7 @@ main > div {
     padding: 15px;
 }
 
-main *{
+main * {
     font-size: 0.9em;
 }
 
@@ -353,7 +260,6 @@ main *{
     .hide {
         display: none;
     }
-
 }
 
 @media only screen and (max-device-width: 1200px) {
