@@ -23,6 +23,13 @@
         <div class="option-bar">
             <a class="button" href="newProblem"><button id="newRequestButton">New</button></a>
         </div>
+        <?php
+        if(isset($messages)) {
+            foreach ($messages as $message) {
+                echo "<div class=\"messages\">".$message."</div>";
+            }
+        }
+        ?>
         <div class="new-problem">
             <form method="post" action="addProblem">
                 <h2>Choice device:</h2>

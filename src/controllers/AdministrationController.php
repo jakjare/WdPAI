@@ -86,6 +86,12 @@ class AdministrationController extends AppController
             header("Location: {$url}/newProblem");
         }
 
+        if ($_POST['id_device'] == null)
+        {
+            $this->messages['messages'] = ["You don't have permissions to any device yet!"];
+            return $this->newProblem();
+        }
+
         $problem = new Problem(
             0,
             null,

@@ -40,6 +40,8 @@ class DefaultController extends AppController
         $problems = $me->getRole() == "administrator" ? $this->problemRepository->getAdminProblems($me) : $this->problemRepository->getUserProblems($me);
         foreach ($problems as $problem)
         {
+            $device = $this->deviceRepository->getDeviceById($problem->getDevice());
+            $problem->setDevice($device->getName());
             $duration = explode(';', $problem->getDuration());
             $duration = $duration[0]."days ".$duration[1]."h ".$duration[2]."min ".$duration[3]."s";
             $problem->setDuration($duration);

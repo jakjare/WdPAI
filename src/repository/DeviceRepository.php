@@ -35,7 +35,7 @@ class DeviceRepository extends Repository
         return $result;
     }
 
-    public function addDevice(Device $device, array $permissions)
+    public function addDevice(Device $device, ?array $permissions)
     {
         $name = $device->getName();
         $ip_address = $device->getIpAddress();
@@ -46,12 +46,19 @@ class DeviceRepository extends Repository
             CALL add_device(:name, :ip_address, :comment, :id_location, :permissions);
         ');
 
-        $id_user = '{';
-        foreach ($permissions as $id)
+        if($permissions != null)
         {
-            $id_user = $id_user.$id;
-            $id_user = next($permissions) ? $id_user.',' : $id_user.'}';
+            $id_user = '{';
+            foreach ($permissions as $id)
+            {
+                $id_user = $id_user.$id;
+                $id_user = next($permissions) ? $id_user.',' : $id_user.'}';
+            }
         }
+        else {
+            $id_user = '{}';
+        }
+
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':ip_address', $ip_address);
