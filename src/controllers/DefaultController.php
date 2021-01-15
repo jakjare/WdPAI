@@ -17,6 +17,7 @@ class DefaultController extends AppController
     public function __construct()
     {
         parent::__construct();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->userRepository = new UserRepository();
         $this->deviceRepository = new DeviceRepository();
         $this->problemRepository = new ProblemRepository();

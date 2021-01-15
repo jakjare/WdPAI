@@ -5,15 +5,18 @@ require_once __DIR__ . '/../repository/PermissionRepository.php';
 class AppController {
 
     private $request;
+    private $permissionRepository;
+    protected $userMenu;
 
     public function  __construct() {
         $this->request = $_SERVER['REQUEST_METHOD'];
+        $this->permissionRepository = new PermissionRepository();
+        $this->getMenu();
     }
 
-    public function getPages(): array
+    public function getPages(): ?array
     {
-        $permissionRepository = new PermissionRepository();
-        return $permissionRepository->getPages();
+        return $this->permissionRepository->getPages();
     }
 
     protected function isPost(): bool {
@@ -43,4 +46,8 @@ class AppController {
         print $output;
     }
 
+    private function getMenu(): void
+    {
+        $this->userMenu = $this->permissionRepository->getMenu();
+    }
 }

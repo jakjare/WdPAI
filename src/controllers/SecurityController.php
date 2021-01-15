@@ -7,10 +7,12 @@ require_once __DIR__.'/../repository/UserRepository.php';
 class SecurityController extends AppController
 {
     private $userRepository;
+    private $messages = [];
 
     public function __construct()
     {
         parent::__construct();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->userRepository = new UserRepository();
     }
 
@@ -72,11 +74,13 @@ class SecurityController extends AppController
 
         if (!password_verify($current_password, $old_password))
         {
-            return $this->render('settings', ['messages' => ["Old password is incorrect!"]]);
+            $this->messages['messages'] = ["Old password is incorrect!"];
+            return $this->render('settings', $this->messages);
         }
         if ($confirmed_password !== $new_password)
         {
-            return $this->render('settings', ['messages' => ["Passwords are different!"]]);
+            $this->messages['messages'] = ["Passwords are different!"];
+            return $this->render('settings', $this->messages);
         }
 
         $user->setPassword(password_hash($new_password, PASSWORD_DEFAULT));
@@ -84,6 +88,5 @@ class SecurityController extends AppController
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/settings");
-
     }
 }

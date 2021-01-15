@@ -5,7 +5,6 @@ require_once __DIR__.'/../models/User.php';
 
 class PermissionRepository extends Repository
 {
-
     public function getPages(): array
     {
         session_start();
@@ -32,6 +31,27 @@ class PermissionRepository extends Repository
             LEFT JOIN role_page rp on r.id = rp.id_role
             LEFT JOIN pages p on rp.id_page = p.id
             WHERE sessions.id = :session_id AND last_update + INTERVAL '10 min' > current_timestamp;
+        ");
+        $stmt->bindParam(':session_id', $session_id);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getMenu(): array
+    {
+        session_start();
+        $session_id = session_id();
+
+        $stmt = $this->database->connect()->prepare("
+            SELECT m.* FROM active_sessions sessions
+            LEFT JOIN users u on sessions.id_user = u.id
+            LEFT JOIN user_details ud on u.id_user_details = ud.id
+            LEFT JOIN roles r on ud.role = r.id
+            LEFT JOIN role_menu rm on r.id = rm.id_role
+            LEFT JOIN menu m on rm.id_menu = m.id
+            WHERE sessions.id = :session_id AND last_update + INTERVAL '10 min' > current_timestamp
+            ORDER BY sequence ASC;
         ");
         $stmt->bindParam(':session_id', $session_id);
         $stmt->execute();

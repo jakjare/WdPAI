@@ -16,6 +16,7 @@ class UserController extends AppController
     public function __construct()
     {
         parent::__construct();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->userRepository = new UserRepository();
     }
 
@@ -32,9 +33,10 @@ class UserController extends AppController
             $this->userRepository->setImage($_SESSION['email'], $_FILES['avatar']['name']);
             $_SESSION['image'] = $_FILES['avatar']['name'];
 
-            return $this->render('settings');
+            return $this->render('settings', $this->messages);
         }
-        $this->render('settings', ['messages' => ['Something went wrong!']]);
+        $this->messages['messages'] = ['Something went wrong!'];
+        $this->render('settings', $this->messages);
     }
 
     private function validate(array $file): bool
@@ -60,7 +62,7 @@ class UserController extends AppController
         {
             if (!$this->isPost())
             {
-                return $this->render('settings');
+                return $this->render('settings', $this->messages);
             }
             $tmp = $_POST['name'] == "" ? $user->getName() : $_POST['name'];
             $user->setName($tmp);
@@ -79,27 +81,32 @@ class UserController extends AppController
             $this->userRepository->changePersonalDetails($user);
         }
 
-        $this->render('settings', ['name' => $user->getName(), 'surname' => $user->getSurname(), 'email' => $user->getEmail(), 'phone' => $user->getPhone(), 'password' => $user->getPassword()]);
+        $this->messages['name'] = $user->getName();
+        $this->messages['surname'] = $user->getSurname();
+        $this->messages['email'] = $user->getEmail();
+        $this->messages['phone'] = $user->getPhone();
+        $this->messages['password'] = $user->getPassword();
+        $this->render('settings', $this->messages);
     }
 
     public function users()
     {
         $users = $this->userRepository->getUsers();
-        $this->render('users', ['users' => $users]);
+        $this->messages['users'] = $users;
+        $this->render('users', $this->messages);
     }
 
     public function addUser()
     {
         if (!$this->isPost() || !isset($_POST['email']))
         {
-            return $this->render('users');
+            return $this->render('users', $this->messages);
         }
 
         if ($this->userRepository->userExists($_POST['email']))
         {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/users");
-            return $this->render('users', ['messages' => "User with this email already exists!"]);
+            $this->messages['messages'] = ["User with this email already exists!"];
+            return $this->render('users', $this->messages);
         }
 
         $user = new User(
