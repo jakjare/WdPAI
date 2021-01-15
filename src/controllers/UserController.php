@@ -20,7 +20,7 @@ class UserController extends AppController
         $this->userRepository = new UserRepository();
     }
 
-    public function users()
+    public function users(): void
     {
         $users = $this->userRepository->getUsers();
         $this->messages['users'] = $users;

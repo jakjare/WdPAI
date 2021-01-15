@@ -24,7 +24,7 @@ class DefaultController extends AppController
     }
     public function index()
     {
-        $this->render('login');
+        empty($this->messages["userMenu"]) ? $this->render('login'): $this->dashboard();
     }
 
     public function error()
