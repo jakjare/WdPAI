@@ -5,6 +5,24 @@ const userEditorForm = overlay.querySelector('form[class="settings-form"]');
 const actions = document.querySelector('table[class="objects-table"]').querySelectorAll('tr[id]');
 const form = overlay.querySelector('form');
 
+function editExistingUser(user)
+{
+    overlay.style.display = 'flex';
+    overlay.querySelector('h1').innerText = "Change user information";
+    form.action = 'editUser';
+    form.querySelector('input[name="old-email"]').value = user.email;
+    form.querySelector('input[name="email"]').value = user.email;
+    form.querySelector('input[name="name"]').value = user.name;
+    form.querySelector('input[name="surname"]').value = user.surname;
+    form.querySelector('input[name="phone"]').value = user.phone;
+    form.querySelectorAll('option').forEach(function (currentValue) {
+        if(currentValue.innerText.toLowerCase() == user.role)
+        {
+            currentValue.selected = true;
+        }
+    });
+}
+
 actions.forEach(function (currentValue) {
     const data = {email: currentValue.querySelector('[id="email"]').innerHTML};
     currentValue.querySelector('.fa-user-edit').addEventListener('click', function () {
@@ -59,21 +77,3 @@ userAddButton.addEventListener('click', function () {
     overlay.style.display = 'flex';
     userEditorForm.reset();
 });
-
-function editExistingUser(user)
-{
-    overlay.style.display = 'flex';
-    overlay.querySelector('h1').innerText = "Change user information";
-    form.action = 'editUser';
-    form.querySelector('input[name="old-email"]').value = user.email;
-    form.querySelector('input[name="email"]').value = user.email;
-    form.querySelector('input[name="name"]').value = user.name;
-    form.querySelector('input[name="surname"]').value = user.surname;
-    form.querySelector('input[name="phone"]').value = user.phone;
-    form.querySelectorAll('option').forEach(function (currentValue) {
-        if(currentValue.innerText.toLowerCase() == user.role)
-        {
-            currentValue.selected = true;
-        }
-    });
-}

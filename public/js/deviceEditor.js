@@ -4,9 +4,6 @@ const locationAddButton = document.querySelector('button[id="locationAddButton"]
 const exitPopupButton = document.querySelector('button[id="exitPopupButton"]');
 const deviceEditorForm = overlay.querySelector('form[id="deviceForm"]');
 const locationForm = overlay.querySelector('form[id="locationForm"]');
-const actions = document.querySelector('table[class="objects-table"]').querySelectorAll('tr[id]');
-
-
 
 exitPopupButton.addEventListener('click', function () {
     overlay.style.display = 'none';

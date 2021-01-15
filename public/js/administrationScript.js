@@ -4,38 +4,6 @@ const overlay = document.querySelector('div[class="overlay"]');
 const exitPopupButton = document.querySelector('button[id="exitPopupButton"]');
 const problemReplyForm = overlay.querySelector('form[id="problemReplyForm"]');
 
-exitPopupButton.addEventListener('click', function () {
-    overlay.style.display = 'none';
-});
-
-problem_boxes.forEach(function (currentElement) {
-    const infoButton = currentElement.querySelector('.fa-info').parentElement;
-    const replyButton = currentElement.querySelector('.fa-reply').parentElement;
-    const acceptButton = currentElement.querySelector('.fa-check').parentElement;
-    infoButton.addEventListener('click', function () {
-        showMoreInfo(infoButton.id);
-    });
-    replyButton.addEventListener('click', function () {
-        problemReplyForm.reset();
-        overlay.style.display = 'flex';
-        problemReplyForm.querySelector('[name="id"]').value = infoButton.id;
-    });
-    acceptButton.addEventListener('click', function () {
-        const data = {id_problem: infoButton.id};
-
-        fetch("/setAckJSON", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        currentElement.querySelector('.fa-hammer').nextElementSibling.innerHTML = 'Yes';
-        currentElement.querySelector('h2').innerHTML = 'STATUS: IN PROCESS';
-    });
-});
-
 function showMoreInfo(id) {
     more_info_box.innerHTML = "";
     const data = {id: id};
@@ -132,3 +100,35 @@ function revokePermission(user_email, id_device) {
         body: JSON.stringify(data)
     });
 }
+
+exitPopupButton.addEventListener('click', function () {
+    overlay.style.display = 'none';
+});
+
+problem_boxes.forEach(function (currentElement) {
+    const infoButton = currentElement.querySelector('.fa-info').parentElement;
+    const replyButton = currentElement.querySelector('.fa-reply').parentElement;
+    const acceptButton = currentElement.querySelector('.fa-check').parentElement;
+    infoButton.addEventListener('click', function () {
+        showMoreInfo(infoButton.id);
+    });
+    replyButton.addEventListener('click', function () {
+        problemReplyForm.reset();
+        overlay.style.display = 'flex';
+        problemReplyForm.querySelector('[name="id"]').value = infoButton.id;
+    });
+    acceptButton.addEventListener('click', function () {
+        const data = {id_problem: infoButton.id};
+
+        fetch("/setAckJSON", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        currentElement.querySelector('.fa-hammer').nextElementSibling.innerHTML = 'Yes';
+        currentElement.querySelector('h2').innerHTML = 'STATUS: IN PROCESS';
+    });
+});
