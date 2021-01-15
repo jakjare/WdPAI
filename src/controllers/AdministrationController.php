@@ -22,8 +22,8 @@ class AdministrationController extends AppController
     public function __construct()
     {
         parent::__construct();
-        $this->messages["userMenu"] = $this->userMenu;
         session_start();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->requestRepository = new RequestRepository();
         $this->deviceRepository = new DeviceRepository();
         $this->userRepository= new UserRepository();

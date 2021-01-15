@@ -55,5 +55,4 @@ class DefaultController extends AppController
 
         $this->render('dashboard', $this->messages);
     }
-
 }

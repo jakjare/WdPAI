@@ -76,7 +76,6 @@
             <div id="users">
                 <div>
                     <div>Users</div>
-                    <a href="users">View all</a>
                 </div>
                 <table>
                     <?php foreach ($users as $user):

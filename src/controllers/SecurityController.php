@@ -40,6 +40,12 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ["Wrong password!"]]);
         }
 
+        if (!$user->isEnabled())
+        {
+            $this->userRepository->userLogin($user->getIdDatabase(), false);
+            return $this->render('login', ['messages' => ["Your account is disabled!"]]);
+        }
+
         $_SESSION['email'] = $user->getEmail();
         $_SESSION['name'] = $user->getName();
         $_SESSION['surname'] = $user->getSurname();

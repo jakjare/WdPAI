@@ -241,6 +241,10 @@ main * {
 }
 
 @media only screen and (max-device-width: 1000px) {
+    * {
+        font-size: 50px;
+    }
+
     .option-bar {
         flex-direction: column;
         width: calc(100% - 30px);

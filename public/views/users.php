@@ -26,6 +26,13 @@
             <button><i class="fas fa-search"></i></button>
             <button id="userAddButton">Add user</button>
         </div>
+        <?php
+        if(isset($messages)) {
+            foreach ($messages as $message) {
+                echo "<div class=\"messages\">".$message."</div>";
+            }
+        }
+        ?>
         <div id="object-list">
             <table class="objects-table">
                 <tr>

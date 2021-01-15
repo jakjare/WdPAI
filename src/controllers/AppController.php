@@ -2,13 +2,14 @@
 
 require_once __DIR__ . '/../repository/PermissionRepository.php';
 
-class AppController {
-
+class AppController
+{
+    protected $userMenu;
     private $request;
     private $permissionRepository;
-    protected $userMenu;
 
-    public function  __construct() {
+    public function  __construct()
+    {
         $this->request = $_SERVER['REQUEST_METHOD'];
         $this->permissionRepository = new PermissionRepository();
         $this->getMenu();
@@ -19,15 +20,18 @@ class AppController {
         return $this->permissionRepository->getPages();
     }
 
-    protected function isPost(): bool {
+    protected function isPost(): bool
+    {
         return $this->request === 'POST';
     }
 
-    protected function isGet(): bool {
+    protected function isGet(): bool
+    {
         return $this->request === 'GET';
     }
 
-    protected function render(string $template = null, array $variables = []) {
+    protected function render(string $template = null, array $variables = [])
+    {
         $templatePath = 'public/views/'.$template.'.php';
         $output = 'Site not found!';
 
