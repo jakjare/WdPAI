@@ -4,39 +4,6 @@ const oneCheckbox = table.querySelectorAll('tr[id]');
 const openRequestBlock = document.querySelector('div[id="open-request"]');
 const deleteCheckedButton = document.querySelector('#deleteCheckedButton');
 
-allCheckbox.addEventListener('click', function () {
-    const type = allCheckbox.checked
-    oneCheckbox.forEach(function (currentValue) {
-        currentValue.querySelector('input[type="checkbox"]').checked = type;
-    });
-});
-
-oneCheckbox.forEach(function (currentValue) {
-    currentValue.querySelector(".fa-archive").addEventListener('click', function () {
-        changeArchivedStatus(currentValue.id);
-        currentValue.remove();
-    });
-
-    const data = currentValue.querySelectorAll('.click');
-    data.forEach(function (current) {
-        current.addEventListener('click',function () {
-            currentValue.classList.remove('bold');
-            openRequest(currentValue.id);
-        });
-    });
-
-});
-
-deleteCheckedButton.addEventListener('click', function () {
-    oneCheckbox.forEach(function (currentValue) {
-        if (currentValue.querySelector('input[type="checkbox"]').checked)
-        {
-            changeArchivedStatus(currentValue.id);
-            currentValue.remove();
-        }
-    });
-});
-
 function changeArchivedStatus(id) {
     const data = {id: id};
 
@@ -74,3 +41,36 @@ function showRequest(requestElement) {
     openRequestBlock.querySelector("#device").innerHTML = requestElement.device;
     openRequestBlock.querySelector("p").innerHTML = requestElement.content;
 }
+
+allCheckbox.addEventListener('click', function () {
+    const type = allCheckbox.checked
+    oneCheckbox.forEach(function (currentValue) {
+        currentValue.querySelector('input[type="checkbox"]').checked = type;
+    });
+});
+
+oneCheckbox.forEach(function (currentValue) {
+    currentValue.querySelector(".fa-archive").addEventListener('click', function () {
+        changeArchivedStatus(currentValue.id);
+        currentValue.remove();
+    });
+
+    const data = currentValue.querySelectorAll('.click');
+    data.forEach(function (current) {
+        current.addEventListener('click',function () {
+            currentValue.classList.remove('bold');
+            openRequest(currentValue.id);
+        });
+    });
+
+});
+
+deleteCheckedButton.addEventListener('click', function () {
+    oneCheckbox.forEach(function (currentValue) {
+        if (currentValue.querySelector('input[type="checkbox"]').checked)
+        {
+            changeArchivedStatus(currentValue.id);
+            currentValue.remove();
+        }
+    });
+});

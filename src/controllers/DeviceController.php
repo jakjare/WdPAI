@@ -19,6 +19,7 @@ class DeviceController extends AppController
     public function __construct()
     {
         parent::__construct();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->deviceRepository = new DeviceRepository();
         $this->locationRepository= new LocationRepository();
         $this->userRepository= new UserRepository();
@@ -28,13 +29,17 @@ class DeviceController extends AppController
         $devices = $this->deviceRepository->getDeviceList();
         $locations = $this->locationRepository->getLocations();
         $users = $this->userRepository->getUsersByRole('user');
-        $this->render('devices', ["devices" => $devices, "locations" => $locations, "users" => $users]);
+
+        $this->messages["devices"] = $devices;
+        $this->messages["locations"] = $locations;
+        $this->messages["users"] = $users;
+        $this->render('devices', $this->messages);
     }
 
     public function addDevice() {
         if (!$this->isPost() || !isset($_POST['name']))
         {
-            return $this->render('devices');
+            return $this->render('devices', $this->messages);
         }
         $device = new Device(
             0,
@@ -56,7 +61,7 @@ class DeviceController extends AppController
     public function addLocation() {
         if (!$this->isPost() || !isset($_POST['name']))
         {
-            return $this->render('devices');
+            return $this->render('devices', $this->messages);
         }
 
         $location = new Location(0, $_POST['name']);

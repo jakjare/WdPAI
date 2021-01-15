@@ -53,6 +53,10 @@ input[type="text"], input[type="password"] {
     padding: 0 1em;
 }
 
+.objects-table tr:not(:first-child):hover {
+    background-color: #ECF1F8;
+}
+
 .click {
     cursor: pointer;
 }

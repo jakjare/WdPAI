@@ -23,6 +23,7 @@ class AdministrationController extends AppController
     {
         parent::__construct();
         session_start();
+        $this->messages["userMenu"] = $this->userMenu;
         $this->requestRepository = new RequestRepository();
         $this->deviceRepository = new DeviceRepository();
         $this->userRepository= new UserRepository();

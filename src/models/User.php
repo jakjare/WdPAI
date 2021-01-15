@@ -14,13 +14,12 @@ class User
     private $role;
     private $last_login;
 
-    public function __construct(int $id_database, string $email, string $password, bool $enabled, string $created_at, string $name, string $surname, string $phone, string $image, string $role, ?string $last_login)
+    public function __construct(int $id_database, string $email, string $password, bool $enabled, ?string $created_at, string $name, string $surname, string $phone, ?string $image, string $role, ?string $last_login)
     {
         $this->id_database = $id_database;
         $this->email = $email;
         $this->password = $password;
         $this->enabled = $enabled;
-        $this->salt = $salt;
         $this->created_at = $created_at;
         $this->name = $name;
         $this->surname = $surname;

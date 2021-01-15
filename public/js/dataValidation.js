@@ -4,6 +4,7 @@ const emailButton = emailInput.parentElement.parentElement.parentElement.querySe
 const newPasswordInput = document.querySelector('input[name="new-password"]');
 const confirmedPasswordInput = document.querySelector('input[name="confirm-password"]');
 const passwordButton = newPasswordInput.parentElement.parentElement.parentElement.querySelector('button');
+let xDval = 123;
 
 function isEmail(email)
 {
@@ -18,6 +19,11 @@ function isPhoneNumber(phone)
 function arePasswordsSame(password, confirmedPassword)
 {
     return password === confirmedPassword;
+}
+
+function passwordsLength(password)
+{
+    return password.length >= 3;
 }
 
 function markValidation(element, condition)
@@ -45,10 +51,12 @@ emailInput.addEventListener('keyup', function () {
 
 confirmedPasswordInput.addEventListener('keyup', function () {
     setTimeout(function () {
-        const condition = arePasswordsSame(
+        const same = arePasswordsSame(
             newPasswordInput.value,
             confirmedPasswordInput.value
         );
+        const length = passwordsLength(newPasswordInput.value);
+        const condition = same && length;
         condition ? passwordButton.disabled = false : passwordButton.disabled = true;
         markValidation(confirmedPasswordInput, condition);
         },

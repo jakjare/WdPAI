@@ -47,7 +47,6 @@ class UserRepository extends Repository
 
         if ($user == false) {
             return null;
-            //TODO zamiast zwracać nulla należy zwracać exception
         }
 
         return new User(
@@ -271,7 +270,7 @@ class UserRepository extends Repository
     public function getOnlineStats(): int
     {
         $stmt = $this->database->connect()->prepare("
-            SELECT COUNT(id) AS online FROM active_sessions WHERE last_update + INTERVAL '10 min' > current_timestamp GROUP BY id_user;
+            SELECT count(DISTINCT id_user) as online FROM active_sessions WHERE last_update + INTERVAL '10 min' > current_timestamp;
         ");
         $stmt->execute();
 

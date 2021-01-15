@@ -141,7 +141,9 @@ main > div:first-child {
         flex-direction: column;
     }
 
-    .more-info {
+    .more-info, .problems {
         min-width: 500px;
+        overflow: scroll;
+        scrollbar-width: none;
     }
 }
